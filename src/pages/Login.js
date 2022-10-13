@@ -1,9 +1,46 @@
-import React from "react";
-import '../custom.scss';
+import React, {useState} from "react";
+import FormGroup from "../components/FormGroup";
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import ButtonSubmit from "../components/ButtonSubmit";
 
 function Login() {
+  const [validated, setValidated] = useState(false);
+
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    setValidated(true);
+  };
+
   return(
-    <h1>Log in</h1>
+    <Form noValidate validated={validated} onSubmit={handleSubmit} className="m-4">
+      <Row className="mb-3">
+        <FormGroup 
+          controlId="validationCustom04"
+          md="4"
+          textlabel="Email"
+          type="email"
+          placeholder="example@example.com"
+          textinvalid="This email doesn't existe. Please, try it again"
+          />
+        </Row>
+        <Row className="mb-3">
+          <FormGroup 
+            controlId="validationCustom05"
+            md="4"
+            textlabel="Password"
+            type="password"
+            placeholder="password"
+            textinvalid="The password is incorrect. Please, try it again"
+          />
+        </Row>
+      <ButtonSubmit type="submit" textbutton="Log in" />
+    </Form>
   )
 }
 

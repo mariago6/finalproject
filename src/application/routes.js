@@ -10,7 +10,7 @@ const AllRoutes = () => {
     <BrowserRouter>
       <NavbarHeader />
       <Routes>
-        <Route path='/home' element={<Home />} />
+        <Route path='/' element={<Home />} />
         <Route path='/searchrecipes' element={<SearchRecipes />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
