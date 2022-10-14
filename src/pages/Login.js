@@ -13,7 +13,6 @@ function Login() {
       event.preventDefault();
       event.stopPropagation();
     }
-
     setValidated(true);
   };
 
