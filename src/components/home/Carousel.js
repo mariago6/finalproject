@@ -1,6 +1,6 @@
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
-import '../custom.scss'; 
+import '../../custom.scss'; 
 
 
 function CarouselHome({index, handleSelect}) {

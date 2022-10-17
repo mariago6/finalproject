@@ -1,7 +1,7 @@
 import React from "react";
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import '../custom.scss';
+import '../../custom.scss';
 
 function FormGroup({controlId, md, textlabel, type, placeholder, textinvalid }) {
   return(

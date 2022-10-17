@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import '../../custom.scss';
-import CarouselHome from "../../components/Carousel";
+import '../custom.scss';
+import CarouselHome from "../components/home/Carousel";
 
 
 function Home() {

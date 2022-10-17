@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import '../custom.scss';
+import '../../custom.scss';
 
 function ButtonSubmit({type, textbutton}) {
   return(

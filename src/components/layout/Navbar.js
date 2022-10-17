@@ -2,7 +2,9 @@ import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import '../custom.scss';
+import LoginLinks from './LoginLinks';
+import LogoutLinks from './LogoutLinks'
+import '../../custom.scss';
 
 const NavbarHeader = () => {
   return(
@@ -16,8 +18,8 @@ const NavbarHeader = () => {
             <Nav.Link href="searchrecipes">Search recipes</Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link href="login">Log in</Nav.Link>
-            <Nav.Link href="signup">Sign up</Nav.Link>
+            <LogoutLinks />
+            <LoginLinks />
           </Nav>
         </Navbar.Collapse>
       </Container>
