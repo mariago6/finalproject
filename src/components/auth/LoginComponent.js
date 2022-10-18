@@ -3,6 +3,7 @@ import FormGroup from "./FormGroup";
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import ButtonSubmit from "./ButtonSubmit";
+import { Link } from 'react-router-dom';
 
 
 function LoginComponent({validated, handleSubmit, handleChange, email, password}) {
@@ -35,6 +36,8 @@ function LoginComponent({validated, handleSubmit, handleChange, email, password}
           />
         </Row>
       <ButtonSubmit type="submit" textbutton="Log in" />
+      <p className="mt-3 fs-6"><small>Forgot your password? <Link to="/reset">Reset it here</Link></small></p>
+      <p className="mt-3 fs-6"><small>Do not have an account yet? <Link to="/signup">Sign up</Link></small></p>
     </Form>
   )
 }

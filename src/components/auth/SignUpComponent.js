@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 import ButtonSubmit from './ButtonSubmit'
 import { Link } from "react-router-dom"; 
 
-function SignUpComponent({validated, handleSubmit}) {
+function SignUpComponent({validated, handleSubmit, handleChange, firstName, surname1, surname2, email, password, confirmPassword}) {
   return(
     <Form noValidate validated={validated} onSubmit={handleSubmit} className="m-4">
       <Row className="mb-3">
@@ -16,6 +16,9 @@ function SignUpComponent({validated, handleSubmit}) {
           type="text"
           placeholder="ex. Laura"
           textinvalid="Please write a correct first name."
+          onChange={handleChange}
+          name='firstName'
+          value={firstName}
         />
         <FormGroup 
           controlId="validationCustom02"
@@ -24,6 +27,9 @@ function SignUpComponent({validated, handleSubmit}) {
           type="text"
           placeholder="ex. Perez"
           textinvalid="Please write a correct surname."
+          onChange={handleChange}
+          name='surname1'
+          value={surname1}
         />
         <FormGroup 
           controlId="validationCustom03"
@@ -32,6 +38,9 @@ function SignUpComponent({validated, handleSubmit}) {
           type="text"
           placeholder="ex. Garcia"
           textinvalid="Please write a correct surname."
+          onChange={handleChange}
+          name='surname2'
+          value={surname2}
         />
       </Row>
       <Row className="mb-3">
@@ -42,6 +51,9 @@ function SignUpComponent({validated, handleSubmit}) {
           type="email"
           placeholder="example@example.com"
           textinvalid="Please write a correct email."
+          onChange={handleChange}
+          name='email'
+          value={email}
           />
         <FormGroup 
           controlId="validationCustom05"
@@ -50,6 +62,9 @@ function SignUpComponent({validated, handleSubmit}) {
           type="password"
           placeholder="password"
           textinvalid="Please write a correct password."
+          onChange={handleChange}
+          name='password'
+          value={password}
         />
         <FormGroup 
           controlId="validationCustom06"
@@ -58,6 +73,9 @@ function SignUpComponent({validated, handleSubmit}) {
           type="password"
           placeholder="repeat password"
           textinvalid="Please write a correct password."
+          onChange={handleChange}
+          name='confirmPassword'
+          value={confirmPassword}
         />
       </Row>
       <Form.Group className="mb-3">
