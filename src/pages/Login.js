@@ -15,8 +15,6 @@ function Login() {
     })
     ); 
   }; 
-  
-  console.log(currentUser);
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;

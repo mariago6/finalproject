@@ -17,8 +17,6 @@ function Signup() {
     ); 
   }; 
 
-  console.log(newUser)
-
   const handleSubmit = (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {

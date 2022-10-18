@@ -4,7 +4,7 @@ import '../../custom.scss';
 
 function ButtonSubmit({type, textbutton, onClick}) {
   return(
-    <Button type={type} className="px-4" onClick={onClick}>{textbutton}</Button>
+    <Button type={type} onClick={onClick} className="px-5">{textbutton}</Button>
   )
 }
 
