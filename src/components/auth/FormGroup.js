@@ -3,7 +3,7 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import '../../custom.scss';
 
-function FormGroup({controlId, md, textlabel, type, placeholder, textinvalid }) {
+function FormGroup({controlId, md, textlabel, type, placeholder, textinvalid, name, onChange }) {
   return(
     <Form.Group as={Col} md={md} controlId={controlId}>
       <Form.Label>{textlabel}</Form.Label>
@@ -11,6 +11,8 @@ function FormGroup({controlId, md, textlabel, type, placeholder, textinvalid }) 
         required
         type={type}
         placeholder={placeholder}
+        name={name}
+        onChange={onChange}
       />
       <Form.Control.Feedback type="invalid">
           {textinvalid}

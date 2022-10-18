@@ -4,7 +4,8 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import ButtonSubmit from "./ButtonSubmit";
 
-function LoginComponent({validated, handleSubmit}) {
+
+function LoginComponent({validated, handleSubmit, handleChange, email, password}) {
   return(
     <Form noValidate validated={validated} onSubmit={handleSubmit} className="m-4">
       <Row className="mb-3">
@@ -15,6 +16,9 @@ function LoginComponent({validated, handleSubmit}) {
           type="email"
           placeholder="example@example.com"
           textinvalid="This email doesn't existe. Please, try it again"
+          onChange={handleChange}
+          name='email'
+          value={email}
           />
         </Row>
         <Row className="mb-3">
@@ -25,6 +29,9 @@ function LoginComponent({validated, handleSubmit}) {
             type="password"
             placeholder="password"
             textinvalid="The password is incorrect. Please, try it again"
+            onChange={handleChange}
+            name='password'
+            value={password}
           />
         </Row>
       <ButtonSubmit type="submit" textbutton="Log in" />
