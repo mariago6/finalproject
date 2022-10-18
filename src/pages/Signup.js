@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import SignUpComponent from "../components/layout/SignUpComponent";
+import SignUpComponent from '../components/auth/SignUpComponent'
 
 
 

@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import LoginComponent from "../components/layout/LoginComponent";
+import LoginComponent from "../components/auth/LoginComponent";
 
 
 function Login() {
