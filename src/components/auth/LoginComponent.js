@@ -46,7 +46,6 @@ function LoginComponent({validated, handleSubmit, handleChange, email, password}
             <p className="text-center mt-3 fs-6"><small>Don't have an account yet? <Link to="/signup">Sign up</Link></small></p>
           </Form>
         </Card>
-      
     </section>
   )
 }
