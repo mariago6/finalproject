@@ -24,9 +24,9 @@ function Reset() {
   };
 
   console.log(newPassword);
-  
+
   return(
-    <ResetComponent validated={validated} handleSubmit={handleSubmit} handleChange={handleChange} password={newPassword} />
+    <ResetComponent validated={validated} handleSubmit={handleSubmit} handleChange={handleChange} newpassword={newPassword} />
   )
 }
 

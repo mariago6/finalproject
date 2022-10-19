@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 import ButtonSubmit from "./ButtonSubmit";
 import Card from 'react-bootstrap/Card';
 
-function ResetComponent({validated, handleSubmit, handleChange, password}) {
+function ResetComponent({validated, handleSubmit, handleChange, newpassword}) {
   return(
     <section>
         <Card className='d-flex align-items-center mx-5 mt-4'>
@@ -20,8 +20,8 @@ function ResetComponent({validated, handleSubmit, handleChange, password}) {
                 placeholder="password"
                 textinvalid="The password is incorrect. Please, try it again"
                 onChange={handleChange}
-                name='password'
-                value={password}
+                name='newpassword'
+                value={newpassword}
                 className="my-2 text-start"
               />
             </Row>

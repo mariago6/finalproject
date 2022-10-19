@@ -10,7 +10,9 @@ function Home() {
     setIndex(selectedIndex);
   };
   return(
-    <CarouselHome index={index} handleSelect={handleSelect}/>
+    <div>
+      <CarouselHome index={index} handleSelect={handleSelect}/>
+    </div>
   )
 }
 
