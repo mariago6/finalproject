@@ -6,50 +6,13 @@ import ButtonSubmit from './ButtonSubmit';
 import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom"; 
 
-function SignUpComponent({validated, handleSubmit, handleChange, firstName, surname1, surname2, email, password, confirmPassword}) {
+function SignUpComponent({validated, handleSubmit, handleChangeEmail, handleChangePassword, handleChangeCPassword, 
+  email, password, cpassword, onChangeCheckBox}) {
   return(
     <section>
       <Card className='d-flex align-items-center mx-5 mt-4'> 
         <Form noValidate validated={validated} onSubmit={handleSubmit} className="m-4">
         <h1 className='text-center mb-4'>Sign up</h1>
-          <Row className="mb-3">
-            <FormGroup 
-              controlId="validationCustom01"
-              md="12"
-              textlabel="First name"
-              type="text"
-              placeholder="ex. Laura"
-              textinvalid="Please write a correct first name."
-              onChange={handleChange}
-              name='firstName'
-              value={firstName}
-              className="my-2 text-start"
-            />
-             <FormGroup 
-              controlId="validationCustom02"
-              md="12"
-              textlabel="Surname 1"
-              type="text"
-              placeholder="ex. Perez"
-              textinvalid="Please write a correct surname."
-              onChange={handleChange}
-              name='surname1'
-              value={surname1}
-              className="my-2 text-start"
-            />
-            <FormGroup 
-              controlId="validationCustom03"
-              md="12"
-              textlabel="Surname 2"
-              type="text"
-              placeholder="ex. Garcia"
-              textinvalid="Please write a correct surname."
-              onChange={handleChange}
-              name='surname2'
-              value={surname2}
-              className="my-2 text-start"
-            />
-          </Row>
           <Row className="mb-3">
             <FormGroup 
               controlId="validationCustom04"
@@ -58,7 +21,7 @@ function SignUpComponent({validated, handleSubmit, handleChange, firstName, surn
               type="email"
               placeholder="example@example.com"
               textinvalid="Please write a correct email."
-              onChange={handleChange}
+              onChange={handleChangeEmail}
               name='email'
               value={email}
               className="my-2 text-start"
@@ -69,8 +32,8 @@ function SignUpComponent({validated, handleSubmit, handleChange, firstName, surn
               textlabel="Password"
               type="password"
               placeholder="password"
-              textinvalid="Please write a correct password."
-              onChange={handleChange}
+              textinvalid= "Please write a correct password."
+              onChange={handleChangePassword}
               name='password'
               value={password}
               className="my-2 text-start"
@@ -80,11 +43,11 @@ function SignUpComponent({validated, handleSubmit, handleChange, firstName, surn
               md="12"
               textlabel="Confirm Password"
               type="password"
-              placeholder="repeat password"
-              textinvalid="Please write a correct password."
-              onChange={handleChange}
-              name='confirmPassword'
-              value={confirmPassword}
+              placeholder="confirm password"
+              textinvalid= "Please write a correct password."
+              onChange={handleChangeCPassword}
+              name='password'
+              value={cpassword}
               className="my-2 text-start"
             />
           </Row>
@@ -96,6 +59,7 @@ function SignUpComponent({validated, handleSubmit, handleChange, firstName, surn
                 feedback="You must agree before submitting."
                 feedbackType="invalid"
                 className="my-2 text-start"
+                onChange={onChangeCheckBox}
               />
             </Form.Group>
           </Row>
