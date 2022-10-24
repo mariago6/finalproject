@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card'
 
 
-function LoginComponent({validated, handleSubmit, handleChange, email, password}) {
+function LoginComponent({validated, handleSubmit, handleChangeEmail, handleChangePassword, email, password}) {
   return(
     <section>
         <Card className='d-flex align-items-center mx-5 mt-4'>
@@ -21,7 +21,7 @@ function LoginComponent({validated, handleSubmit, handleChange, email, password}
                 type="email"
                 placeholder="example@example.com"
                 textinvalid="This email doesn't existe. Please, try it again"
-                onChange={handleChange}
+                onChange={handleChangeEmail}
                 name='email'
                 value={email}
                 className="my-2 text-start"
@@ -33,7 +33,7 @@ function LoginComponent({validated, handleSubmit, handleChange, email, password}
                 type="password"
                 placeholder="password"
                 textinvalid="The password is incorrect. Please, try it again"
-                onChange={handleChange}
+                onChange={handleChangePassword}
                 name='password'
                 value={password}
                 className="my-2 text-start"

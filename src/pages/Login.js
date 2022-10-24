@@ -1,20 +1,20 @@
 import React, {useState} from "react";
 import LoginComponent from "../components/auth/LoginComponent";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import {auth} from '../firebase/config'; 
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import Loader from '../components/auth/Loader';
+import {useNavigate} from 'react-router-dom';
+
 
 
 function Login() {
   const [validated, setValidated] = useState(false);
-  const [currentUser, setCurrentUser] = useState({email: '', password: ''});
-
-
-  function handleChange(event) {
-    const {name, value} = event.target;
-    setCurrentUser( ({
-      ...currentUser,
-      [name]: value
-    })
-    ); 
-  }; 
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');  
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate(); 
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
@@ -22,11 +22,36 @@ function Login() {
       event.preventDefault();
       event.stopPropagation();
     }
+    event.preventDefault();
     setValidated(true);
+    setIsLoading(true);
+    
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        setIsLoading(false); 
+        toast.success("Log in Successful...");
+        navigate("/searchrecipes"); 
+      })
+      .catch((error) => {
+        toast.error(error.message);
+        setIsLoading(false); 
+      });
   };
 
   return(
-    <LoginComponent validated={validated} handleSubmit={handleSubmit} handleChange={handleChange} email={currentUser.email} password={currentUser.password} />
+    <div>
+      {isLoading && <Loader />}
+      <LoginComponent 
+        validated={validated} 
+        handleSubmit={handleSubmit}
+        handleChangeEmail={(e) => setEmail(e.target.value)} 
+        handleChangePassword={(e) => setPassword(e.target.value)} 
+        email={email} 
+        password={password} 
+      />
+      <ToastContainer />
+    </div>
   )
 }
 

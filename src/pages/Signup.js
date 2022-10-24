@@ -33,7 +33,7 @@ function Signup() {
       toast.error("ERROR with your registration");
       setIsLoading(false);
       return
-    }
+    };
 
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {

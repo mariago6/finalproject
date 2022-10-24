@@ -15,7 +15,8 @@ const NavbarHeader = () => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="searchrecipes">Search recipes</Nav.Link>
+            <Nav.Link href="searchrecipes">Search</Nav.Link>
+            <Nav.Link href="favorites">Favorites</Nav.Link>
           </Nav>
           <Nav>
             <LogoutLinks />

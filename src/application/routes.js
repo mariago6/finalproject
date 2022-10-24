@@ -6,6 +6,7 @@ import Signup from '../pages/Signup';
 import NavbarHeader from '../components/layout/Navbar';
 import RecipieDetails from '../pages/RecipieDetails';
 import Reset from '../pages/Reset';
+import Favorites from '../pages/Favorites';
 
 
 const AllRoutes = () => {
@@ -16,6 +17,7 @@ const AllRoutes = () => {
         <Route exact path='/' element={<Home />} />
         <Route path='/searchrecipes' element={<SearchRecipes />} />
         <Route path='/searchrecipes/:id' element={<RecipieDetails />} /> 
+        <Route path='/favorites' element={<Favorites />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/reset' element={<Reset />} />
