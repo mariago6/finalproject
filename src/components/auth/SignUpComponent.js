@@ -7,13 +7,25 @@ import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom"; 
 
 function SignUpComponent({validated, handleSubmit, handleChangeEmail, handleChangePassword, handleChangeCPassword, 
-  email, password, cpassword, onChangeCheckBox}) {
+  email, password, cpassword, onChangeCheckBox, handleChangeUsername, username}) {
   return(
     <section>
       <Card className='d-flex align-items-center mx-5 mt-4'> 
         <Form noValidate validated={validated} onSubmit={handleSubmit} className="m-4">
         <h1 className='text-center mb-4'>Sign up</h1>
           <Row className="mb-3">
+          <FormGroup 
+              controlId="validationCustom07"
+              md="12"
+              textlabel="Username"
+              type="text"
+              placeholder="username"
+              textinvalid= "Please write a correct username."
+              onChange={handleChangeUsername}
+              name='username'
+              value={username}
+              className="my-2 text-start"
+            />
             <FormGroup 
               controlId="validationCustom04"
               md="12"

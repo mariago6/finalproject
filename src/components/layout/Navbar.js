@@ -10,11 +10,15 @@ import { auth } from '../../firebase/config';
 import { toast } from "react-toastify";
 import {useNavigate} from 'react-router-dom';
 import { onAuthStateChanged } from "firebase/auth";
+import {useDispatch} from 'react-redux'; 
+import { SET_ACTIVE_USER } from '../../redux/slice/authSlice';
 
 
 const NavbarHeader = () => {
   const [displayName, setDisplayName] = useState(''); 
   const navigate = useNavigate(); 
+
+  const dispatch = useDispatch(); 
 
   const logoutUser = () => {
     signOut(auth).then(() => {
@@ -31,9 +35,16 @@ const NavbarHeader = () => {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        const uid = user.uid;
-        const userName = user.email.slice(0, 6)
-        setDisplayName(userName); 
+        // const uid = user.uid;
+        console.log(user)
+        const username = user.displayName; 
+        setDisplayName(username); 
+
+        dispatch(SET_ACTIVE_USER({
+          email: user.email,
+          userName: username,
+          userId: user.uid,
+        }))
       } else {
         setDisplayName(''); 
       }

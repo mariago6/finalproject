@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import SignUpComponent from '../components/auth/SignUpComponent'; 
-import {createUserWithEmailAndPassword} from 'firebase/auth';
+import {createUserWithEmailAndPassword, updateProfile} from 'firebase/auth';
 import {auth} from '../firebase/config'; 
 import Loader from '../components/auth/Loader';
 import {useNavigate} from 'react-router-dom';
@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function Signup() {
   const [validated, setValidated] = useState(false);
+  const [username, setUsername] = useState(''); 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState(''); 
   const [cPassword, setCPassword] = useState(''); 
@@ -29,7 +30,7 @@ function Signup() {
     setValidated(true);
     setIsLoading(true);
 
-    if(!agree || password !== cPassword) {
+    if(!agree || password !== cPassword || username === '') {
       toast.error("ERROR with your registration");
       setIsLoading(false);
       return
@@ -38,9 +39,12 @@ function Signup() {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
+        updateProfile(auth.currentUser, {
+          displayName: username
+        })
         setIsLoading(false); 
         toast.success("Sign up successful");
-        navigate("/login")
+        navigate("/searchrecipes")
       })
       .catch((error) => {
         toast.error(error.message);
@@ -54,6 +58,7 @@ function Signup() {
       <SignUpComponent 
         validated={validated} 
         handleSubmit={handleSubmit} 
+        handleChangeUsername={(e) => setUsername(e.target.value)}
         handleChangeEmail={(e) => setEmail(e.target.value)} 
         handleChangePassword={(e) => setPassword(e.target.value)}
         handleChangeCPassword={(e) => setCPassword(e.target.value)}
@@ -61,6 +66,7 @@ function Signup() {
         email={email}
         password={password} 
         cpassword={cPassword}
+        username={username}
         />
       </div>
   )
