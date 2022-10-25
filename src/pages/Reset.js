@@ -1,18 +1,16 @@
 import React, { useState }  from "react";
 import ResetComponent from "../components/auth/ResetComponent";
+import Loader from '../components/auth/Loader';
+import {useNavigate} from 'react-router-dom';
+import {auth} from '../firebase/config'; 
+import { sendPasswordResetEmail } from "firebase/auth";
+import { toast } from "react-toastify";
 
 function Reset() {
   const [validated, setValidated] = useState(false);
-  const [newPassword, setNewPassword] = useState('');
-
-  function handleChange(event) {
-    const {name, value} = event.target;
-    setNewPassword( ({
-      ...newPassword,
-      [name]: value
-    })
-    ); 
-  }; 
+  const [email, setEmail] = useState(''); 
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate(); 
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
@@ -20,13 +18,35 @@ function Reset() {
       event.preventDefault();
       event.stopPropagation();
     }
+    event.preventDefault();
     setValidated(true);
+    setIsLoading(true);
+
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        setIsLoading(false);
+        toast.success("Check your email for a reset link");
+        navigate("/login");
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        toast.error(error.message);
+      });
   };
 
-  console.log(newPassword);
+  
+
 
   return(
-    <ResetComponent validated={validated} handleSubmit={handleSubmit} handleChange={handleChange} newpassword={newPassword} />
+    <div>
+      {isLoading && <Loader />}
+      <ResetComponent 
+        validated={validated} 
+        handleSubmit={handleSubmit} 
+        handleChangeEmail={(e) => setEmail(e.target.value)} 
+        email={email} 
+      />
+    </div>
   )
 }
 
