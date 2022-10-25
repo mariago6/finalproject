@@ -25,7 +25,7 @@ function Reset() {
     sendPasswordResetEmail(auth, email)
       .then(() => {
         setIsLoading(false);
-        toast.success("Check your email for a reset link");
+        toast.success("Check your email to reset your password");
         navigate("/login");
       })
       .catch((error) => {

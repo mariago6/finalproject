@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -9,9 +9,11 @@ import { signOut } from "firebase/auth";
 import { auth } from '../../firebase/config'; 
 import { toast } from "react-toastify";
 import {useNavigate} from 'react-router-dom';
+import { onAuthStateChanged } from "firebase/auth";
 
 
 const NavbarHeader = () => {
+  const [displayName, setDisplayName] = useState(''); 
   const navigate = useNavigate(); 
 
   const logoutUser = () => {
@@ -23,6 +25,21 @@ const NavbarHeader = () => {
       toast.error(error.message)
     });
   }
+
+  //current login user. REVIEW  
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        const userName = user.email.slice(0, 6)
+        setDisplayName(userName); 
+      } else {
+        setDisplayName(''); 
+      }
+    })
+  }, [displayName])
+
   return(
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="light">
       <Container>
@@ -35,7 +52,7 @@ const NavbarHeader = () => {
             <Nav.Link href="favorites">Favorites</Nav.Link>
           </Nav>
           <Nav>
-            <LogoutLinks />
+            <LogoutLinks displayName={displayName}/>
             <LoginLinks logoutUser={logoutUser}/>
           </Nav>
         </Navbar.Collapse>
