@@ -4,7 +4,7 @@ import {createUserWithEmailAndPassword} from 'firebase/auth';
 import {auth} from '../firebase/config'; 
 import Loader from '../components/auth/Loader';
 import {useNavigate} from 'react-router-dom';
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -39,7 +39,7 @@ function Signup() {
       .then((userCredential) => {
         const user = userCredential.user;
         setIsLoading(false); 
-        toast.success("Registration Successful...");
+        toast.success("Sign up successful");
         navigate("/login")
       })
       .catch((error) => {
@@ -62,7 +62,6 @@ function Signup() {
         password={password} 
         cpassword={cPassword}
         />
-        <ToastContainer />
       </div>
   )
 }

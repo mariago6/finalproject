@@ -5,8 +5,24 @@ import Navbar from 'react-bootstrap/Navbar';
 import LoginLinks from '../auth/LoginLinks';
 import LogoutLinks from '../auth/LogoutLinks'; 
 import '../../custom.scss';
+import { signOut } from "firebase/auth";
+import { auth } from '../../firebase/config'; 
+import { toast } from "react-toastify";
+import {useNavigate} from 'react-router-dom';
+
 
 const NavbarHeader = () => {
+  const navigate = useNavigate(); 
+
+  const logoutUser = () => {
+    signOut(auth).then(() => {
+      toast.success('Log out successful'); 
+      navigate("/"); 
+    })
+    .catch((error) => {
+      toast.error(error.message)
+    });
+  }
   return(
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="light">
       <Container>
@@ -20,7 +36,7 @@ const NavbarHeader = () => {
           </Nav>
           <Nav>
             <LogoutLinks />
-            <LoginLinks />
+            <LoginLinks logoutUser={logoutUser}/>
           </Nav>
         </Navbar.Collapse>
       </Container>

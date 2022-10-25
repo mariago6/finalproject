@@ -1,10 +1,10 @@
 import React from "react";
 import Nav from 'react-bootstrap/Nav';
 
-function LoginLinks() {
+function LoginLinks({logoutUser}) {
   return(
     <Nav>
-      <Nav.Link href="/">Log out</Nav.Link>
+      <Nav.Link to="/" onClick={logoutUser}>Log out</Nav.Link>
     </Nav>
   )
 }

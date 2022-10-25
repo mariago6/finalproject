@@ -7,11 +7,14 @@ import NavbarHeader from '../components/layout/Navbar';
 import RecipieDetails from '../pages/RecipieDetails';
 import Reset from '../pages/Reset';
 import Favorites from '../pages/Favorites';
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const AllRoutes = () => {
   return(
     <BrowserRouter>
+      <ToastContainer />
       <NavbarHeader />
       <Routes>
         <Route exact path='/' element={<Home />} />

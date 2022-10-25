@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import LoginComponent from "../components/auth/LoginComponent";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import {auth} from '../firebase/config'; 
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from '../components/auth/Loader';
 import {useNavigate} from 'react-router-dom';
@@ -30,7 +30,7 @@ function Login() {
       .then((userCredential) => {
         const user = userCredential.user;
         setIsLoading(false); 
-        toast.success("Log in Successful...");
+        toast.success("Log in successful");
         navigate("/searchrecipes"); 
       })
       .catch((error) => {
@@ -50,7 +50,6 @@ function Login() {
         email={email} 
         password={password} 
       />
-      <ToastContainer />
     </div>
   )
 }

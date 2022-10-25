@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 import ButtonSubmit from "./ButtonSubmit";
 import Card from 'react-bootstrap/Card';
 
-function ResetComponent({validated, handleSubmit, handleChange, newpassword}) {
+function ResetComponent({validated, handleSubmit, handleChangeEmail, email}) {
   return(
     <section>
         <Card className='d-flex align-items-center mx-5 mt-4'>
@@ -15,13 +15,13 @@ function ResetComponent({validated, handleSubmit, handleChange, newpassword}) {
               <FormGroup 
                 controlId="validationCustom10"
                 md="12"
-                textlabel="Write a new password"
-                type="password"
-                placeholder="password"
-                textinvalid="The password is incorrect. Please, try it again"
-                onChange={handleChange}
-                name='newpassword'
-                value={newpassword}
+                textlabel="Write your email"
+                type="email"
+                placeholder="email"
+                textinvalid="The email is incorrect. Please, try it again"
+                onChange={handleChangeEmail}
+                name='email'
+                value={email}
                 className="my-2 text-start"
               />
             </Row>
