@@ -10,13 +10,14 @@ import { auth } from '../../firebase/config';
 import { toast } from "react-toastify";
 import {useNavigate} from 'react-router-dom';
 import { onAuthStateChanged } from "firebase/auth";
-import {useDispatch} from 'react-redux'; 
-import { SET_ACTIVE_USER, REMOVE_ACTIVA_USER } from '../../redux/slice/authSlice';
+import {useDispatch, useSelector} from 'react-redux'; 
+import { SET_ACTIVE_USER, REMOVE_ACTIVA_USER, selectUserName } from '../../redux/slice/authSlice';
 import {ShowOnLogin, ShowOnLogout} from '../auth/HiddenLink';
+import Loader from '../auth/Loader/Loader'; 
 
 
 const NavbarHeader = () => {
-  const [displayName, setDisplayName] = useState(''); 
+  const [isLoading, setIsLoading] = useState(false); 
   const navigate = useNavigate(); 
 
   const dispatch = useDispatch(); 
@@ -30,31 +31,28 @@ const NavbarHeader = () => {
       toast.error(error.message)
     });
   }
-
   //current login user
 
   useEffect(() => {
+    setIsLoading(true);
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user)
-        const uName = user.displayName;
-        const username = uName.charAt(0).toUpperCase() + uName.slice(1);  
-        setDisplayName(username); 
-
         dispatch(SET_ACTIVE_USER({
           email: user.email,
-          userName: username,
+          userName: user.displayName,
           userId: user.uid,
         }))
+        setIsLoading(false); 
       } else {
-        setDisplayName(''); 
         dispatch(REMOVE_ACTIVA_USER()); 
+        setIsLoading(false); 
       }
     })
-  }, [dispatch, displayName])
+  }, [dispatch])
 
   return(
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="light">
+      {isLoading && <Loader />}
       <Container>
         <Navbar.Brand href="/">Recipes</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -69,7 +67,7 @@ const NavbarHeader = () => {
               <LogoutLinks />
             </ShowOnLogout>
             <ShowOnLogin>
-              <LoginLinks logoutUser={logoutUser} displayName={displayName}/>
+              <LoginLinks logoutUser={logoutUser} displayName={useSelector(selectUserName)}/>
             </ShowOnLogin>
           </Nav>
         </Navbar.Collapse>

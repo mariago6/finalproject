@@ -1,11 +1,13 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import SignUpComponent from '../components/auth/SignUpComponent'; 
-import {createUserWithEmailAndPassword, updateProfile} from 'firebase/auth';
+import {createUserWithEmailAndPassword, updateProfile, onAuthStateChanged} from 'firebase/auth';
 import {auth} from '../firebase/config'; 
 import Loader from '../components/auth/Loader/Loader';
 import {useNavigate} from 'react-router-dom';
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import {useDispatch} from 'react-redux'; 
+import { SET_ACTIVE_USER, REMOVE_ACTIVA_USER } from '../redux/slice/authSlice';
 
 
 
@@ -18,15 +20,17 @@ function Signup() {
   const [agree, setAgree] = useState(false); 
   const [isLoading, setIsLoading] = useState(false); 
   const navigate = useNavigate(); 
+  const dispatch = useDispatch(); 
+
+  console.log(username); 
 
   const handleSubmit = (event) => {
+    event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     }
-    
-    event.preventDefault();
     setValidated(true);
     setIsLoading(true);
 
@@ -42,6 +46,7 @@ function Signup() {
           displayName: username
         })
         setIsLoading(false); 
+        
         toast.success("Sign up successful");
         navigate("/searchrecipes")
         
@@ -51,6 +56,23 @@ function Signup() {
         setIsLoading(false); 
       });
   };
+
+  useEffect(() => {
+    setIsLoading(true); 
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        dispatch(SET_ACTIVE_USER({
+          email: user.email,
+          userName: username,
+          userId: user.uid,
+        }))
+        setIsLoading(false); 
+      } else {
+        dispatch(REMOVE_ACTIVA_USER()); 
+        setIsLoading(false); 
+      }
+    })
+  }, [dispatch, username])
 
   return(
     <div>
