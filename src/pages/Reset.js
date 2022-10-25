@@ -1,6 +1,6 @@
 import React, { useState }  from "react";
 import ResetComponent from "../components/auth/ResetComponent";
-import Loader from '../components/auth/Loader';
+import Loader from '../components/auth/Loader/Loader'; 
 import {useNavigate} from 'react-router-dom';
 import {auth} from '../firebase/config'; 
 import { sendPasswordResetEmail } from "firebase/auth";

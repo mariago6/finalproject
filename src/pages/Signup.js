@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import SignUpComponent from '../components/auth/SignUpComponent'; 
 import {createUserWithEmailAndPassword, updateProfile} from 'firebase/auth';
 import {auth} from '../firebase/config'; 
-import Loader from '../components/auth/Loader';
+import Loader from '../components/auth/Loader/Loader';
 import {useNavigate} from 'react-router-dom';
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -37,14 +37,14 @@ function Signup() {
     };
 
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
+      .then(() => {
         updateProfile(auth.currentUser, {
           displayName: username
         })
         setIsLoading(false); 
         toast.success("Sign up successful");
         navigate("/searchrecipes")
+        
       })
       .catch((error) => {
         toast.error(error.message);

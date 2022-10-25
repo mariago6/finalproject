@@ -11,7 +11,8 @@ import { toast } from "react-toastify";
 import {useNavigate} from 'react-router-dom';
 import { onAuthStateChanged } from "firebase/auth";
 import {useDispatch} from 'react-redux'; 
-import { SET_ACTIVE_USER } from '../../redux/slice/authSlice';
+import { SET_ACTIVE_USER, REMOVE_ACTIVA_USER } from '../../redux/slice/authSlice';
+import {ShowOnLogin, ShowOnLogout} from '../auth/HiddenLink';
 
 
 const NavbarHeader = () => {
@@ -30,14 +31,14 @@ const NavbarHeader = () => {
     });
   }
 
-  //current login user. REVIEW  
+  //current login user
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        // const uid = user.uid;
         console.log(user)
-        const username = user.displayName; 
+        const uName = user.displayName;
+        const username = uName.charAt(0).toUpperCase() + uName.slice(1);  
         setDisplayName(username); 
 
         dispatch(SET_ACTIVE_USER({
@@ -47,9 +48,10 @@ const NavbarHeader = () => {
         }))
       } else {
         setDisplayName(''); 
+        dispatch(REMOVE_ACTIVA_USER()); 
       }
     })
-  }, [displayName])
+  }, [dispatch, displayName])
 
   return(
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="light">
@@ -63,8 +65,12 @@ const NavbarHeader = () => {
             <Nav.Link href="favorites">Favorites</Nav.Link>
           </Nav>
           <Nav>
-            <LogoutLinks displayName={displayName}/>
-            <LoginLinks logoutUser={logoutUser}/>
+            <ShowOnLogout>
+              <LogoutLinks />
+            </ShowOnLogout>
+            <ShowOnLogin>
+              <LoginLinks logoutUser={logoutUser} displayName={displayName}/>
+            </ShowOnLogin>
           </Nav>
         </Navbar.Collapse>
       </Container>

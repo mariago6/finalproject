@@ -1,5 +1,5 @@
 import React from "react";
-import RecipieDetailsCard from "../components/RecipieDetailsCard";
+import RecipieDetailsCard from "../components/searchrecipes/RecipieDetailsCard";
 
 function RecipieDetails() {
   return(

@@ -1,6 +1,6 @@
 import React from "react";
 import '../custom.scss';
-import RecipesList from "../components/RecipesList";
+import RecipesList from "../components/searchrecipes/RecipesList";
 
 function SearchRecipes() {
   return(
