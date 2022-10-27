@@ -10,18 +10,30 @@ import Favorites from '../pages/Favorites';
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from '../components/layout/Footer';
+import {PrivateRoute} from './PrivateRoute';
+import {useSelector} from 'react-redux'; 
+import { selectIsLoggedIn } from "../redux/slice/authSlice";
+
 
 
 const AllRoutes = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  console.log(isLoggedIn, 'privateRoute'); 
+
+
+
   return(
     <BrowserRouter>
       <ToastContainer />
       <NavbarHeader />
       <Routes>
         <Route exact path='/' element={<Home />} />
-        <Route path='/searchrecipes' element={<SearchRecipes />} />
-        <Route path='/searchrecipes/:id' element={<RecipieDetails />} /> 
-        <Route path='/favorites' element={<Favorites />} />
+        {/* <Route element={<PrivateRoute isLoggedIn={isLoggedIn}/>}> */}
+          <Route path='/searchrecipes' element={<SearchRecipes />} />
+        
+          <Route path='/searchrecipes/:id' element={<RecipieDetails />} /> 
+          <Route path='/favorites' element={<Favorites />} />
+        {/* </Route> */}
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/reset' element={<Reset />} />

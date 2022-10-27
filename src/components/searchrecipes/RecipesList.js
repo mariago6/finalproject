@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function RecipesList({recipiestitle, recipiestext, recipieimage, id}) {
   return(
-    <Card className="text-center">
+    <Card className="listCard text-center">
       <Card.Img variant="top" src={recipieimage} />
       <Card.Header>{recipiestitle}</Card.Header>
       <Card.Body>

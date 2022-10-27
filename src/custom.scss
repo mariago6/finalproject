@@ -11,6 +11,10 @@ $primary: #98A8F8;
   background: rgba(0, 0, 0, 0.4);
 }
 
+.navbar {
+  font-size: 20px;
+}
+
 .logoImage {
   object-fit: cover;
   display: block;
@@ -19,6 +23,38 @@ $primary: #98A8F8;
   max-width: 203px;
   height: 100%;
   max-height: 88px;
+  box-sizing: border-box;
+  background-size: contain;
+}
+
+.listCard {
+  object-fit: cover;
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  height: 100%;
+  max-height: 500px;
+  box-sizing: border-box;
+  background-size: contain;
+}
+
+.sectionLoginSignup {
+  display: flex;
+  justify-content: center;
+}
+
+.loginSignupCard {
+  width: 100%;
+  max-width: 600px;
+}
+
+.card-img-top {
+  object-fit: cover;
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  height: 100%;
+  max-height: 300px;
   box-sizing: border-box;
   background-size: contain;
 }

@@ -12,6 +12,7 @@ import {useNavigate} from 'react-router-dom';
 import { onAuthStateChanged } from "firebase/auth";
 import {useDispatch, useSelector} from 'react-redux'; 
 import { SET_ACTIVE_USER, REMOVE_ACTIVA_USER, selectUserName } from '../../redux/slice/authSlice';
+
 import {ShowOnLogin, ShowOnLogout} from '../auth/HiddenLink';
 import Loader from '../auth/Loader/Loader'; 
 
@@ -19,7 +20,6 @@ import Loader from '../auth/Loader/Loader';
 const NavbarHeader = () => {
   const [isLoading, setIsLoading] = useState(false); 
   const navigate = useNavigate(); 
-
   const dispatch = useDispatch(); 
 
   const logoutUser = () => {
@@ -34,21 +34,23 @@ const NavbarHeader = () => {
   //current login user
 
   useEffect(() => {
-    setIsLoading(true);
+    setIsLoading(true); 
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        dispatch(SET_ACTIVE_USER({
-          email: user.email,
-          userName: user.displayName,
-          userId: user.uid,
-        }))
-        setIsLoading(false); 
+        dispatch(
+          SET_ACTIVE_USER({
+            email: user.email,
+            userName: user.displayName,
+            userID: user.uid,
+          })
+        );
+      setIsLoading(false); 
       } else {
-        dispatch(REMOVE_ACTIVA_USER()); 
+        dispatch(REMOVE_ACTIVA_USER());
         setIsLoading(false); 
       }
-    })
-  }, [dispatch])
+    });
+  }, [dispatch]);
 
   return(
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="light">
@@ -59,8 +61,10 @@ const NavbarHeader = () => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="searchrecipes">Search</Nav.Link>
-            <Nav.Link href="favorites">Favorites</Nav.Link>
+            <ShowOnLogin>
+              <Nav.Link href="searchrecipes">Search</Nav.Link>
+              <Nav.Link href="favorites">Favorites</Nav.Link>
+            </ShowOnLogin>
           </Nav>
           <Nav>
             <ShowOnLogout>

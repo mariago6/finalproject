@@ -7,8 +7,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import Loader from '../components/auth/Loader/Loader'; 
 import {useNavigate} from 'react-router-dom';
 
-
-
 function Login() {
   const [validated, setValidated] = useState(false);
   const [email, setEmail] = useState('');
@@ -30,11 +28,11 @@ function Login() {
       .then(() => {
         setIsLoading(false); 
         toast.success("Log in successful");
-        navigate("/searchrecipes"); 
+        navigate("/searchrecipes");
       })
       .catch((error) => {
         toast.error(error.message);
-        setIsLoading(false); 
+        setIsLoading(false);
       });
   };
 

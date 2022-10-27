@@ -9,8 +9,8 @@ import { Link } from "react-router-dom";
 function SignUpComponent({validated, handleSubmit, handleChangeEmail, handleChangePassword, handleChangeCPassword, 
   email, password, cpassword, onChangeCheckBox, handleChangeUsername, username}) {
   return(
-    <section>
-      <Card className='d-flex align-items-center mx-5 mt-4'> 
+    <section className='sectionLoginSignup mb-5'>
+      <Card className='loginSignupCard mx-5 mt-4'> 
         <Form noValidate validated={validated} onSubmit={handleSubmit} className="m-4">
         <h1 className='text-center mb-4'>Sign up</h1>
           <Row className="mb-3">
