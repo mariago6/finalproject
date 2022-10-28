@@ -12,7 +12,7 @@ $primary: #98A8F8;
 }
 
 .navbar {
-  font-size: 20px;
+  font-size: 23px;
 }
 
 .logoImage {
@@ -57,6 +57,11 @@ $primary: #98A8F8;
   max-height: 300px;
   box-sizing: border-box;
   background-size: contain;
+}
+
+.rangerfilter {
+  width: 30%;
+
 }
 
 @import '~bootstrap/scss/bootstrap.scss'; 
