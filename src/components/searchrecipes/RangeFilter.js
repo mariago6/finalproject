@@ -10,7 +10,7 @@ function RangerFilter({value1, value2, onInput})  {
    
     <MultiRangeSlider
 			min={50}
-			max={800}
+			max={1500}
 			step={10}
 			minValue={value1}
 			maxValue={value2}

@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from "react";
 import '../custom.scss';
 import RecipesList from "../components/searchrecipes/RecipesList";
-import Card from 'react-bootstrap/Card';
 import CheckboxFilter from "../components/searchrecipes/CheckboxFilter";
 import SelectFilter from "../components/searchrecipes/SelectFilter";
 import RangerFilter from "../components/searchrecipes/RangeFilter";
+import Accordion from 'react-bootstrap/Accordion';
 
 function SearchRecipes() {
   const [isVegan, setIsVegan] = useState(false); 
@@ -52,8 +52,15 @@ function SearchRecipes() {
   return(
     <div className="container">
       <h2>Recipies</h2>
+      <div className="row logoContainer">
+        <img alt='draw-logo' src='./images/draw-logo.png' className="logoPicture"/>
+      </div>
       <div className="row">
-        <Card>
+      <Accordion>
+      <Accordion.Item eventKey="0">
+      <Accordion.Header>Filters</Accordion.Header>
+      <Accordion.Body>
+        
           <CheckboxFilter id='vegan' label='Vegan' onChange={(e) => setIsVegan(e.target.checked)}/>
           <CheckboxFilter id='vegetrian' label='Vegetarian' onChange={(e) => setIsVegetarian(e.target.checked)}/>
           <CheckboxFilter id='glutenfree' label='Gluten free' onChange={(e) => setIsGlutenFree(e.target.checked)}/>
@@ -67,11 +74,14 @@ function SearchRecipes() {
               onInput={onInput}
             />
             <div className="d-flex">
-              <p className="mx-2"><small>Minimum: {minRangerValue}KCal </small></p>
-              <p className="mx-2"><small>Maximum: {maxRangerValue}KCal</small></p>
+              <p className="mx-2"><small>Minimum: <strong>{minRangerValue}KCal </strong></small></p>
+              <p className="mx-2"><small>Maximum: <strong>{maxRangerValue}KCal</strong></small></p>
             </div>
           </div>
-        </Card>
+        
+        </Accordion.Body>
+        </Accordion.Item>
+        </Accordion>
       </div>
       <div className="row">
         <div className="col-12 col-md-6 my-4">
@@ -94,8 +104,9 @@ function SearchRecipes() {
             recipieimage="./images/pasta.jpg" 
             /> 
         </div>
+        {/* {printRecipes}  */}
       </div>
-      {/* {printRecipes}  */}
+      
     </div>
   )
 }
