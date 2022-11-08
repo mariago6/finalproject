@@ -93,12 +93,11 @@ function SearchRecipes() {
     setMaxRangerValue(e.maxValue)
   }
 
-  console.log(selectIngredient)
-
   return(
     <div className="container">
-      <h2>Recipies</h2>
-      
+      <div className="recipesTitle">
+        <h2>Recipies & Cooking Ideas</h2>
+      </div>
       <div className="row">
       <Accordion>
       <Accordion.Item eventKey="0">
@@ -130,14 +129,12 @@ function SearchRecipes() {
           <RecipesList 
             recipiestitle="Chicken with chillies" 
             recipieimage="./images/chilly.jpg" 
-            recipiestext="dfmgsdlfkmsldkfgmsdlkgksdgklsdgl" 
             linkroute="1" />
         </div>
         <div className="col-12 col-md-6 my-4">
           <RecipesList 
             recipiestitle="Pasta with pesto" 
             recipieimage="./images/pasta.jpg" 
-            recipiestext="fmgsdlfkmsldkfgmsdlkgksdgklsdgl"
             /> 
         </div>
         <div className="col-12 col-md-6 my-4">

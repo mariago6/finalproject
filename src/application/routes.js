@@ -18,9 +18,6 @@ import { selectIsLoggedIn } from "../redux/slice/authSlice";
 
 const AllRoutes = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  console.log(isLoggedIn, 'privateRoute'); 
-
-
 
   return(
     <BrowserRouter>

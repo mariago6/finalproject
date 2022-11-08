@@ -47,13 +47,6 @@ function RecipieDetails() {
 
   // useEffect(() => {callApi(INITIAL_API)}, []);
 
-  console.log(ingredients)
-  console.log(steps)
-  console.log(title)
-  console.log(time)
-  console.log(servings)
-  console.log(image)
-
 
   const printProcess = steps.map((step, index) => {
     return (

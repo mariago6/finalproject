@@ -22,8 +22,6 @@ function Signup() {
   const navigate = useNavigate(); 
   const dispatch = useDispatch(); 
 
-  console.log(username); 
-
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.currentTarget;
