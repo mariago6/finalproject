@@ -7,31 +7,36 @@ import Steps from "../components/searchrecipes/Steps";
 
 function RecipieDetails() {
   const params = useParams(); 
-  const INITIAL_API_INSTRUCTIONS = `https://api.spoonacular.com/recipes/${params.id}/analyzedInstructions?apiKey=2f0e9e3a78d041a393aa31a8ac79bdfc`;
-  const INITIAL_API_INGREDIENTS = `https://api.spoonacular.com/recipes/${params.id}/ingredientWidget.json?apiKey=2f0e9e3a78d041a393aa31a8ac79bdfc`
+  const INITIAL_API = `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=2f0e9e3a78d041a393aa31a8ac79bdfc`
+
   const [steps, setSteps] = useState([]); 
   const [ingredients, setIngredients] = useState([]); 
+  const [title, setTitle] = useState(''); 
+  const [time, setTime] = useState(''); 
+  const [servings, setServings] = useState(''); 
+  const [image, setImage] = useState(''); 
 
   const callApiInstructions = (linkPage) => {
     fetch(linkPage)
       .then(res => res.json())
       .then((res) => {
-        setSteps(res);
+        setSteps(res.analyzedInstructions);
+        setIngredients(res.extendedIngredients);
+        setTitle(res.title);
+        setTime(res.readyInMinutes); 
+        setServings(res.servings);
+        setImage(res.image)
       });
   }; 
 
-  const callApiIngredients = (linkPage) => {
-    fetch(linkPage)
-      .then(res => res.json())
-      .then((res) => {
-        setIngredients(res.ingredients);
-      });
-  }
-
-  useEffect(() => {callApiInstructions(INITIAL_API_INSTRUCTIONS)}, []);
-  useEffect(() => {callApiIngredients(INITIAL_API_INGREDIENTS)}, []);
+  useEffect(() => {callApiInstructions(INITIAL_API)}, []);
 
   console.log(ingredients)
+  console.log(steps)
+  console.log(title)
+  console.log(time)
+  console.log(servings)
+  console.log(image)
 
 
   const printProcess = steps.map((step, index) => {
