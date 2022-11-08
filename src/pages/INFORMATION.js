@@ -585,3 +585,5 @@ const INFORMATION = {
 	"originalId": null,
 	"spoonacularSourceUrl": "https://spoonacular.com/cauliflower-brown-rice-and-vegetable-fried-rice-716426"
 }
+
+export default INFORMATION; 

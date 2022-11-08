@@ -5,7 +5,7 @@ import Steps from './Steps';
 function RecipeStage({numStage, nameStage, steps}) {
   return(
     <Card.Body>
-      <p>{numStage} {nameStage}</p>
+      <p>Stage {numStage} {nameStage}</p>
       <Steps stepText={steps}/>
     </Card.Body>
   )

@@ -17,17 +17,17 @@ function SearchRecipes() {
   const [minRangerValue, setMinRangerValue] = useState(50);
   const [maxRangerValue, setMaxRangerValue] = useState(800); 
   
-  const INITIAL_API = `https://api.spoonacular.com/recipes/complexSearch?${diet}&apiKey=2f0e9e3a78d041a393aa31a8ac79bdfc`; 
-  const [recipes, setRecipes] = useState([]); 
+  // const INITIAL_API = `https://api.spoonacular.com/recipes/complexSearch?${diet}&apiKey=2f0e9e3a78d041a393aa31a8ac79bdfc`; 
+  // const [recipes, setRecipes] = useState([]); 
 
-  const callApi = (linkPage) => {
-    fetch(linkPage)
-      .then(res => res.json())
-      .then(res => {
-        setRecipes(res.results);
+  // const callApi = (linkPage) => {
+  //   fetch(linkPage)
+  //     .then(res => res.json())
+  //     .then(res => {
+  //       setRecipes(res.results);
         
-      });
-  }; 
+  //     });
+  // }; 
 
   function filterDiet() {
     if(isVegan && isVegetarian) {
@@ -39,25 +39,25 @@ function SearchRecipes() {
     }
   }
 
-  useEffect(() => {
-    filterDiet()
-    callApi(INITIAL_API)
-  }, [isVegan, isVegetarian]);
+  // useEffect(() => {
+  //   filterDiet()
+  //   callApi(INITIAL_API)
+  // }, [isVegan, isVegetarian]);
 
-  const printRecipes = recipes.map((recipe, index) => {
-    return (
-        <div className="col-12 col-md-6 my-4">
-          <RecipesList 
-            key={index} 
-            recipiestitle={recipe.title} 
-            recipieimage={recipe.image} 
-            id={recipe.id}
-            // recipiestext={recipe.id} 
-            linkroute={index} 
-            />
-        </div>
-    )
-   })
+  // const printRecipes = recipes.map((recipe, index) => {
+  //   return (
+  //       <div className="col-12 col-md-6 my-4">
+  //         <RecipesList 
+  //           key={index} 
+  //           recipiestitle={recipe.title} 
+  //           recipieimage={recipe.image} 
+  //           id={recipe.id}
+  //           // recipiestext={recipe.id} 
+  //           linkroute={index} 
+  //           />
+  //       </div>
+  //   )
+  //  })
 
   const onInput = (e) => {
     setMinRangerValue(e.minValue)
@@ -97,7 +97,7 @@ function SearchRecipes() {
         </Accordion>
       </div>
       <div className="row">
-        {/* <div className="col-12 col-md-6 my-4">
+        <div className="col-12 col-md-6 my-4">
           <RecipesList 
             recipiestitle="Chicken with chillies" 
             recipieimage="./images/chilly.jpg" 
@@ -116,8 +116,8 @@ function SearchRecipes() {
             recipiestitle="Pasta with pesto" 
             recipieimage="./images/pasta.jpg" 
             /> 
-        </div> */}
-        {printRecipes} 
+        </div>
+        {/* {printRecipes}  */}
       </div>
       
     </div>

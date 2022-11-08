@@ -4,10 +4,12 @@ import {useParams} from 'react-router-dom';
 import { useState, useEffect } from "react";
 import RecipeStage from "../components/searchrecipes/RecipeStage";
 import Steps from "../components/searchrecipes/Steps";
+import INFORMATION from "./INFORMATION";
+
 
 function RecipieDetails() {
   const params = useParams(); 
-  const INITIAL_API = `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=2f0e9e3a78d041a393aa31a8ac79bdfc`
+  // const INITIAL_API = `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=2f0e9e3a78d041a393aa31a8ac79bdfc`
 
   const [steps, setSteps] = useState([]); 
   const [ingredients, setIngredients] = useState([]); 
@@ -15,21 +17,35 @@ function RecipieDetails() {
   const [time, setTime] = useState(''); 
   const [servings, setServings] = useState(''); 
   const [image, setImage] = useState(''); 
+  const [price, setPrice] = useState(''); 
 
-  const callApiInstructions = (linkPage) => {
-    fetch(linkPage)
-      .then(res => res.json())
-      .then((res) => {
-        setSteps(res.analyzedInstructions);
-        setIngredients(res.extendedIngredients);
-        setTitle(res.title);
-        setTime(res.readyInMinutes); 
-        setServings(res.servings);
-        setImage(res.image)
-      });
-  }; 
+  // const callApi = (linkPage) => {
+  //   fetch(linkPage)
+  //     .then(res => res.json())
+  //     .then((res) => {
+  //       setSteps(res.analyzedInstructions);
+  //       setIngredients(res.extendedIngredients);
+  //       setTitle(res.title);
+  //       setTime(res.readyInMinutes); 
+  //       setServings(res.servings);
+  //       setImage(res.image)
+        // setPrice(res.pricePerServing)
+  //     });
+  // }; 
 
-  useEffect(() => {callApiInstructions(INITIAL_API)}, []);
+  const getInformation = (data) => {
+    setSteps(data.analyzedInstructions);
+    setIngredients(data.extendedIngredients);
+    setTitle(data.title);
+    setTime(data.readyInMinutes); 
+    setServings(data.servings);
+    setImage(data.image)
+    setPrice((data.pricePerServing/10).toFixed(2))
+  }
+
+  useEffect(() => {getInformation(INFORMATION)}, []); 
+
+  // useEffect(() => {callApi(INITIAL_API)}, []);
 
   console.log(ingredients)
   console.log(steps)
@@ -68,7 +84,16 @@ function RecipieDetails() {
   
   return(
     <div>
-      <RecipieDetailsCard recipieprocess={printProcess} recipieingredients={printIngredients} />
+      <RecipieDetailsCard 
+        recipieprocess={printProcess} 
+        recipieingredients={printIngredients} 
+        recipietitle={title} 
+        time={time} 
+        servings={servings} 
+        recipieimage={image} 
+        numIngredients={ingredients.length}
+        price={price}
+      />
     </div>
   )
 }
