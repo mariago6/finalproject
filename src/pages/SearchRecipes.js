@@ -9,6 +9,7 @@ import Accordion from 'react-bootstrap/Accordion';
 function SearchRecipes() {
   const [isVegan, setIsVegan] = useState(false); 
   const [isVegetarian, setIsVegetarian] = useState(false);
+  const [diet, setDiet] = useState('');
   const [isGlutenFree, setIsGlutenFree] = useState(false); 
   const [isDairyFree, setIsDairyFree] = useState(false); 
   const [isKetogenic, setIsKetogenic] = useState(false); 
@@ -16,33 +17,47 @@ function SearchRecipes() {
   const [minRangerValue, setMinRangerValue] = useState(50);
   const [maxRangerValue, setMaxRangerValue] = useState(800); 
   
-  // const INITIAL_API = 'https://api.spoonacular.com/recipes/complexSearch?apiKey=2f0e9e3a78d041a393aa31a8ac79bdfc'; 
-  // const [recipes, setRecipes] = useState([]); 
+  const INITIAL_API = `https://api.spoonacular.com/recipes/complexSearch?${diet}&apiKey=2f0e9e3a78d041a393aa31a8ac79bdfc`; 
+  const [recipes, setRecipes] = useState([]); 
 
-  // const callApi = (linkPage) => {
-  //   fetch(linkPage)
-  //     .then(res => res.json())
-  //     .then(res => {
-  //       setRecipes(res.results);
+  const callApi = (linkPage) => {
+    fetch(linkPage)
+      .then(res => res.json())
+      .then(res => {
+        setRecipes(res.results);
         
-  //     });
-  // }; 
+      });
+  }; 
 
-  // useEffect(() => {callApi(INITIAL_API)}, []);
+  function filterDiet() {
+    if(isVegan && isVegetarian) {
+      setDiet('diet=vegan,vegetarian')
+    } else if(isVegan) {
+      setDiet('diet=vegan')
+    } else if(isVegetarian) {
+      setDiet('diet=vegetarian')
+    }
+  }
 
-  // const printRecipes = recipes.map((recipe, index) => {
-  //   return (
-  //       <div className="col-12 col-md-6 my-4">
-  //         <RecipesList 
-  //           key={index} 
-  //           recipiestitle={recipe.title} 
-  //           recipieimage={recipe.image} 
-  //           recipiestext={recipe.id} 
-  //           linkroute={index} 
-  //           />
-  //       </div>
-  //   )
-  //  })
+  useEffect(() => {
+    filterDiet()
+    callApi(INITIAL_API)
+  }, [isVegan, isVegetarian]);
+
+  const printRecipes = recipes.map((recipe, index) => {
+    return (
+        <div className="col-12 col-md-6 my-4">
+          <RecipesList 
+            key={index} 
+            recipiestitle={recipe.title} 
+            recipieimage={recipe.image} 
+            id={recipe.id}
+            // recipiestext={recipe.id} 
+            linkroute={index} 
+            />
+        </div>
+    )
+   })
 
   const onInput = (e) => {
     setMinRangerValue(e.minValue)
@@ -52,9 +67,7 @@ function SearchRecipes() {
   return(
     <div className="container">
       <h2>Recipies</h2>
-      <div className="row logoContainer">
-        <img alt='draw-logo' src='./images/draw-logo.png' className="logoPicture"/>
-      </div>
+      
       <div className="row">
       <Accordion>
       <Accordion.Item eventKey="0">
@@ -84,7 +97,7 @@ function SearchRecipes() {
         </Accordion>
       </div>
       <div className="row">
-        <div className="col-12 col-md-6 my-4">
+        {/* <div className="col-12 col-md-6 my-4">
           <RecipesList 
             recipiestitle="Chicken with chillies" 
             recipieimage="./images/chilly.jpg" 
@@ -95,7 +108,7 @@ function SearchRecipes() {
           <RecipesList 
             recipiestitle="Pasta with pesto" 
             recipieimage="./images/pasta.jpg" 
-            recipiestext="dfmgsdl fkms ld kfgm sdlk gks dg kls dgldf dlksmd sdfñsdl dñsfm sdfñdfs sñdñfls dñfsdlks dñfds,lf sdñfñ sdfñdsl,fd ñsdfl sñdfls  sñd dfkfdk ddmdm fkfjs dksd sksdms dksmd f skdm dkfdmfndfv ksmd fksdmf skd f skdf ffkfmdflc sldfmsdmfd fks fm"
+            recipiestext="fmgsdlfkmsldkfgmsdlkgksdgklsdgl"
             /> 
         </div>
         <div className="col-12 col-md-6 my-4">
@@ -103,8 +116,8 @@ function SearchRecipes() {
             recipiestitle="Pasta with pesto" 
             recipieimage="./images/pasta.jpg" 
             /> 
-        </div>
-        {/* {printRecipes}  */}
+        </div> */}
+        {printRecipes} 
       </div>
       
     </div>
