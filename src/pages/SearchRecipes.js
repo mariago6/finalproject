@@ -7,15 +7,18 @@ import RangerFilter from "../components/searchrecipes/RangeFilter";
 import Accordion from 'react-bootstrap/Accordion';
 
 function SearchRecipes() {
-  const [isVegan, setIsVegan] = useState(false); 
   const [isVegetarian, setIsVegetarian] = useState(false);
+  const [isKetogenic, setIsKetogenic] = useState(false); 
   const [diet, setDiet] = useState('');
   const [isGlutenFree, setIsGlutenFree] = useState(false); 
   const [isDairyFree, setIsDairyFree] = useState(false); 
-  const [isKetogenic, setIsKetogenic] = useState(false); 
+  const [intolerances, setIntolerances] = useState('');
   const [selectIngredient, setSelectIngredient] = useState(''); 
   const [minRangerValue, setMinRangerValue] = useState(50);
-  const [maxRangerValue, setMaxRangerValue] = useState(800); 
+  const [maxRangerValue, setMaxRangerValue] = useState(1500); 
+  // const [minCalories, setMinCalories] = useState('');
+  // const [maxCalories, setMaxCalories] = useState(''); 
+  const [urlApi, setUrlApi] = useState(`https://api.spoonacular.com/recipes/complexSearch?&apiKey=2f0e9e3a78d041a393aa31a8ac79bdfc`)
   
   // const INITIAL_API = `https://api.spoonacular.com/recipes/complexSearch?${diet}&apiKey=2f0e9e3a78d041a393aa31a8ac79bdfc`; 
   // const [recipes, setRecipes] = useState([]); 
@@ -30,19 +33,45 @@ function SearchRecipes() {
   // }; 
 
   function filterDiet() {
-    if(isVegan && isVegetarian) {
-      setDiet('diet=vegan,vegetarian')
-    } else if(isVegan) {
-      setDiet('diet=vegan')
+    let dietParam = '';
+
+    if(isKetogenic && isVegetarian) {
+      dietParam = 'ketogenic,vegetarian'
+    } else if(isKetogenic) {
+      dietParam = 'ketogenic'
     } else if(isVegetarian) {
-      setDiet('diet=vegetarian')
-    }
+      dietParam = 'vegetarian'
+    } 
+    setDiet(dietParam)
+  }; 
+
+  function filterIntolerances() {
+    let intoleranceParam = ''; 
+    if(isGlutenFree && isDairyFree) {
+      intoleranceParam = 'gluten,dairy'
+    } else if(isGlutenFree) {
+      intoleranceParam ='gluten'; 
+    } else if(isDairyFree) {
+      intoleranceParam = 'dairy'; 
+    } 
+    setIntolerances(intoleranceParam)
   }
 
-  // useEffect(() => {
-  //   filterDiet()
-  //   callApi(INITIAL_API)
-  // }, [isVegan, isVegetarian]);
+  
+  useEffect(() => {
+    filterDiet();
+    filterIntolerances();  
+    // callApi(INITIAL_API)
+  }, [isVegetarian, isKetogenic, isGlutenFree, isDairyFree]);
+
+  useEffect(() => {
+    setUrlApi(`https://api.spoonacular.com/recipes/complexSearch?diet=${diet}&intolerance=${intolerances}&minCalories=${minRangerValue}&maxCalories=${maxRangerValue}&includeIngredients=${selectIngredient}&apiKey=2f0e9e3a78d041a393aa31a8ac79bdfc`); 
+    
+  }, [diet, intolerances, minRangerValue, maxRangerValue, selectIngredient])
+
+  useEffect(() => {
+    console.log(urlApi)
+  }, [urlApi])
 
   // const printRecipes = recipes.map((recipe, index) => {
   //   return (
@@ -64,6 +93,8 @@ function SearchRecipes() {
     setMaxRangerValue(e.maxValue)
   }
 
+  console.log(selectIngredient)
+
   return(
     <div className="container">
       <h2>Recipies</h2>
@@ -73,13 +104,11 @@ function SearchRecipes() {
       <Accordion.Item eventKey="0">
       <Accordion.Header>Filters</Accordion.Header>
       <Accordion.Body>
-        
-          <CheckboxFilter id='vegan' label='Vegan' onChange={(e) => setIsVegan(e.target.checked)}/>
           <CheckboxFilter id='vegetrian' label='Vegetarian' onChange={(e) => setIsVegetarian(e.target.checked)}/>
+          <CheckboxFilter id='ketogenic' label='Ketogenic' onChange={(e) => setIsKetogenic(e.target.checked)}/>
           <CheckboxFilter id='glutenfree' label='Gluten free' onChange={(e) => setIsGlutenFree(e.target.checked)}/>
           <CheckboxFilter id='dairyfree' label='Dairy free' onChange={(e) => setIsDairyFree(e.target.checked)}/>
-          <CheckboxFilter id='ketogenic' label='Ketogenic' onChange={(e) => setIsKetogenic(e.target.checked)}/>
-          <SelectFilter />
+          <SelectFilter onChange={(e) => setSelectIngredient(e.target.value)}/>
           <div className="rangerfilter">
             <RangerFilter 
               value1={minRangerValue} 
