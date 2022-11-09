@@ -52,12 +52,13 @@ $primary: #98A8F8;
 }
 .sectionLoginSignup {
   display: flex;
-  justify-content: center;
+  justify-content:end;    
 }
 
 .loginSignupCard {
   width: 100%;
   max-width: 600px;
+  background-color: transparent !important;
 }
 
 .card-img-top {
@@ -159,6 +160,14 @@ ul.nav.nav-tabs {
 
 .stageTitle {
   color: $primary; 
+}
+
+.backgroundLoginSignup {
+  background-position: center;
+  background-size: cover; 
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh; 
 }
 
 
