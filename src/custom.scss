@@ -98,5 +98,70 @@ $primary: #98A8F8;
   margin-bottom: 2%;  
 }
 
+.detailsCardTitle {
+  display: flex;
+  justify-content: center;
+}
+
+.detailsCardListGroup {
+  display: flex;
+  justify-content: center;
+}
+
+.detailsImgCard {
+  max-width: none !important; 
+}
+
+ul.nav.nav-tabs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.detailsTabCard {
+  display: flex; 
+  justify-content: center; 
+}
+
+.stepDiv {
+  display: flex; 
+  flex-flow: column;
+  align-items: center; 
+}
+
+.boxIngredientsContainer {
+  padding-left: 10px; 
+  margin: 15px; 
+  border: solid 2px; 
+  border-color: transparent; 
+  border-radius: 5px;  
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  opacity: 0.8;
+  justify-content: center !important;
+  text-align: left !important;
+  width: 60%;
+}
+
+.boxProcessContainer {
+  padding: 10px; 
+  margin: 15px; 
+  border: solid 2px; 
+  border-color: transparent; 
+  border-radius: 5px;  
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  opacity: 0.8;
+  justify-content: center !important;
+  text-align: left !important;
+  width: 100%;
+}
+
+.stageTitle {
+  color: $primary; 
+}
+
+
+
 @import '~bootstrap/scss/bootstrap.scss'; 
 

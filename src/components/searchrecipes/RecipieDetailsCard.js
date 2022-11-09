@@ -13,33 +13,35 @@ function RecipieDetailsCard({recipieimage, recipietitle, recipieingredients, rec
   return(
     <div className="container">
       <div className="col-12">
-      <Card>
       <Link to="/searchrecipes"><CloseButton /></Link>
-      <Card.Img variant="top" src={recipieimage} />
-      <Card.Body>
-        <Card.Title>{recipietitle}</Card.Title>
-      </Card.Body>
-      <ListGroup horizontal>
-        <ListGroup.Item><BsFillClockFill /> {time}'</ListGroup.Item>
-        <ListGroup.Item><BsPeopleFill /> {servings}</ListGroup.Item>
-        <ListGroup.Item><GiFruitBowl/> {numIngredients}</ListGroup.Item>
-        <ListGroup.Item><MdEuroSymbol/><BsFillPersonFill/> {price}</ListGroup.Item>
-      </ListGroup>
-      <Card.Body>
-        <Card.Text>
-          <Tabs
-            defaultActiveKey="ingredients"
-            id="uncontrolled-tab-example"
-            className="mb-3"
-          >
-            <Tab eventKey="ingredients" title="Ingredients"> {recipieingredients} </Tab>
-            <Tab eventKey="instructions" title="Instructions">{recipieprocess}  </Tab>
-          </Tabs>
-          
-          
-        </Card.Text>
-      </Card.Body>
-    </Card>
+        <Card className="detailsCard">
+          <Card.Img variant="top" src={recipieimage} className='detailsImgCard' />
+          <Card.Body className="detailsCardTitle">
+            <Card.Title >{recipietitle}</Card.Title>
+          </Card.Body>
+          <ListGroup horizontal className="detailsCardListGroup">
+            <ListGroup.Item><BsFillClockFill /> {time}'</ListGroup.Item>
+            <ListGroup.Item><BsPeopleFill /> {servings}</ListGroup.Item>
+            <ListGroup.Item><GiFruitBowl/> {numIngredients}</ListGroup.Item>
+            <ListGroup.Item><MdEuroSymbol/><BsFillPersonFill/> {price}</ListGroup.Item>
+          </ListGroup>
+          <Card.Body> 
+            <Card.Text>
+              <Tabs defaultActiveKey="ingredients" id="uncontrolled-tab-example" className="mb-3">
+                <Tab eventKey="ingredients" title="Ingredients">
+                  <div className="stepDiv">
+                     {recipieingredients}
+                  </div>
+                </Tab>
+                <Tab eventKey="instructions" title="Instructions">
+                  <div className="stepDiv">
+                    {recipieprocess}
+                  </div> 
+                </Tab>
+              </Tabs>              
+            </Card.Text>
+          </Card.Body>
+        </Card>
       </div>
 
     </div>

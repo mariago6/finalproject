@@ -9,12 +9,6 @@ function RecipesList({recipiestitle, recipieimage, id}) {
     <Card className="listCard text-center">
       <Link to={`/searchrecipes/${id}`}><Card.Img variant="top" src={recipieimage} /></Link>
       <Link to={`/searchrecipes/${id}`} style={{ textDecoration: 'none', color: '#000000' }}><Card.Header className="headerRecipes">{recipiestitle}</Card.Header></Link>
-      {/* <Card.Body>
-        <Card.Text>
-          {recipiestext}
-        </Card.Text>
-        <Button variant="primary"><Link to={`/searchrecipes/${id}`} style={{ textDecoration: 'none', color: '#FFF' }}>See more</Link></Button>
-      </Card.Body> */}
     </Card>
   )
 }

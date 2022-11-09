@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 
 function Steps({stepText}) {
   return(
-    <Card.Text>{stepText}</Card.Text>
+    <Card.Text className='stepText'>{stepText}</Card.Text>
   )
 }
 

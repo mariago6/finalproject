@@ -19,19 +19,19 @@ function RecipieDetails() {
   const [image, setImage] = useState(''); 
   const [price, setPrice] = useState(''); 
 
-  // const callApi = (linkPage) => {
-  //   fetch(linkPage)
-  //     .then(res => res.json())
-  //     .then((res) => {
-  //       setSteps(res.analyzedInstructions);
-  //       setIngredients(res.extendedIngredients);
-  //       setTitle(res.title);
-  //       setTime(res.readyInMinutes); 
-  //       setServings(res.servings);
-  //       setImage(res.image)
-        // setPrice(res.pricePerServing)
-  //     });
-  // }; 
+  const callApi = (linkPage) => {
+    fetch(linkPage)
+      .then(res => res.json())
+      .then((res) => {
+        setSteps(res.analyzedInstructions);
+        setIngredients(res.extendedIngredients);
+        setTitle(res.title);
+        setTime(res.readyInMinutes); 
+        setServings(res.servings);
+        setImage(res.image)
+        setPrice((res.pricePerServing/10).toFixed(2))
+      });
+  }; 
 
   const getInformation = (data) => {
     setSteps(data.analyzedInstructions);
@@ -50,22 +50,22 @@ function RecipieDetails() {
 
   const printProcess = steps.map((step, index) => {
     return (
-        <div className="col-12 col-md-6 my-4">
-          <RecipeStage 
-            key={index}
-            steps={step.steps.map((s, index) => {
-              return <p key={index}>{s.number} {s.step}</p>
-            })}
-            numStage={index + 1}
-            nameStage={step.name}
-            />
-        </div>
+        // <div className="col-12 col-md-6 my-4">
+        <RecipeStage 
+          key={index}
+          steps={step.steps.map((s, index) => {
+            return <div className="boxProcessContainer" key={index}><span className="stageTitle">{s.number}</span> {s.step}</div>
+          })}
+          numStage={index + 1}
+          nameStage={step.name}
+          />
     )
    })
 
    const printIngredients = ingredients.map((ingredient, index) => {
     return(
-      <div className="col-12 col-md-6 my-4">
+      // <div className="col-12 col-md-6 my-4">
+      <div className="boxIngredientsContainer">
         <Steps 
           key={index}
           stepText={ingredient.name}

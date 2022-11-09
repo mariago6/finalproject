@@ -6,7 +6,6 @@ import Signup from '../pages/Signup';
 import NavbarHeader from '../components/layout/Navbar';
 import RecipieDetails from '../pages/RecipieDetails';
 import Reset from '../pages/Reset';
-import Favorites from '../pages/Favorites';
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from '../components/layout/Footer';
@@ -27,9 +26,7 @@ const AllRoutes = () => {
         <Route exact path='/' element={<Home />} />
         {/* <Route element={<PrivateRoute isLoggedIn={isLoggedIn}/>}> */}
           <Route path='/searchrecipes' element={<SearchRecipes />} />
-        
           <Route path='/searchrecipes/:id' element={<RecipieDetails />} /> 
-          <Route path='/favorites' element={<Favorites />} />
         {/* </Route> */}
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />

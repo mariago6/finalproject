@@ -15,12 +15,8 @@ function SearchRecipes() {
   const [intolerances, setIntolerances] = useState('');
   const [selectIngredient, setSelectIngredient] = useState(''); 
   const [minRangerValue, setMinRangerValue] = useState(50);
-  const [maxRangerValue, setMaxRangerValue] = useState(1500); 
-  // const [minCalories, setMinCalories] = useState('');
-  // const [maxCalories, setMaxCalories] = useState(''); 
-  const [urlApi, setUrlApi] = useState(`https://api.spoonacular.com/recipes/complexSearch?&apiKey=2f0e9e3a78d041a393aa31a8ac79bdfc`)
-  
-  // const INITIAL_API = `https://api.spoonacular.com/recipes/complexSearch?${diet}&apiKey=2f0e9e3a78d041a393aa31a8ac79bdfc`; 
+  const [maxRangerValue, setMaxRangerValue] = useState(1500);  
+  const [urlApi, setUrlApi] = useState(`https://api.spoonacular.com/recipes/complexSearch?&apiKey=2f0e9e3a78d041a393aa31a8ac79bdfc`); 
   // const [recipes, setRecipes] = useState([]); 
 
   // const callApi = (linkPage) => {
@@ -34,13 +30,12 @@ function SearchRecipes() {
 
   function filterDiet() {
     let dietParam = '';
-
     if(isKetogenic && isVegetarian) {
-      dietParam = 'ketogenic,vegetarian'
+      dietParam = '&diet=ketogenic,vegetarian'
     } else if(isKetogenic) {
-      dietParam = 'ketogenic'
+      dietParam = '&diet=ketogenic'
     } else if(isVegetarian) {
-      dietParam = 'vegetarian'
+      dietParam = '&diet=vegetarian'
     } 
     setDiet(dietParam)
   }; 
@@ -48,11 +43,11 @@ function SearchRecipes() {
   function filterIntolerances() {
     let intoleranceParam = ''; 
     if(isGlutenFree && isDairyFree) {
-      intoleranceParam = 'gluten,dairy'
+      intoleranceParam = '&intolerance=gluten,dairy'
     } else if(isGlutenFree) {
-      intoleranceParam ='gluten'; 
+      intoleranceParam ='&intolerance=gluten'; 
     } else if(isDairyFree) {
-      intoleranceParam = 'dairy'; 
+      intoleranceParam = '&intolerance=dairy'; 
     } 
     setIntolerances(intoleranceParam)
   }
@@ -61,12 +56,11 @@ function SearchRecipes() {
   useEffect(() => {
     filterDiet();
     filterIntolerances();  
-    // callApi(INITIAL_API)
-  }, [isVegetarian, isKetogenic, isGlutenFree, isDairyFree]);
+    // callApi(urlApi)
+  }, [isVegetarian, isKetogenic, isGlutenFree, isDairyFree, urlApi]);
 
   useEffect(() => {
-    setUrlApi(`https://api.spoonacular.com/recipes/complexSearch?diet=${diet}&intolerance=${intolerances}&minCalories=${minRangerValue}&maxCalories=${maxRangerValue}&includeIngredients=${selectIngredient}&apiKey=2f0e9e3a78d041a393aa31a8ac79bdfc`); 
-    
+    setUrlApi(`https://api.spoonacular.com/recipes/complexSearch?number=10${diet}${intolerances}&minCalories=${minRangerValue}&maxCalories=${maxRangerValue}&includeIngredients=${selectIngredient}&apiKey=2f0e9e3a78d041a393aa31a8ac79bdfc`); 
   }, [diet, intolerances, minRangerValue, maxRangerValue, selectIngredient])
 
   useEffect(() => {
@@ -81,8 +75,6 @@ function SearchRecipes() {
   //           recipiestitle={recipe.title} 
   //           recipieimage={recipe.image} 
   //           id={recipe.id}
-  //           // recipiestext={recipe.id} 
-  //           linkroute={index} 
   //           />
   //       </div>
   //   )
