@@ -1,8 +1,8 @@
 # Migga app
-
-[draw-logo](https://user-images.githubusercontent.com/104831553/201068000-8d2f7fe6-c457-41d4-a016-33fc62f6b2d2.png)
+![logo](https://user-images.githubusercontent.com/104831553/201069189-33c20ae2-3468-4b81-9551-093ac2c68679.png)
 
 You can acces my app at: 
+
 
 ## Table of content: 
 
