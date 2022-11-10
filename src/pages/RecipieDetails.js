@@ -9,7 +9,7 @@ import INFORMATION from "./INFORMATION";
 
 function RecipieDetails() {
   const params = useParams(); 
-  // const INITIAL_API = `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=2f0e9e3a78d041a393aa31a8ac79bdfc`
+  const INITIAL_API = `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=2f0e9e3a78d041a393aa31a8ac79bdfc`
 
   const [steps, setSteps] = useState([]); 
   const [ingredients, setIngredients] = useState([]); 
@@ -50,7 +50,6 @@ function RecipieDetails() {
 
   const printProcess = steps.map((step, index) => {
     return (
-        // <div className="col-12 col-md-6 my-4">
         <RecipeStage 
           key={index}
           steps={step.steps.map((s, index) => {
@@ -64,7 +63,6 @@ function RecipieDetails() {
 
    const printIngredients = ingredients.map((ingredient, index) => {
     return(
-      // <div className="col-12 col-md-6 my-4">
       <div className="boxIngredientsContainer">
         <Steps 
           key={index}

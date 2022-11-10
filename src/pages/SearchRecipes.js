@@ -21,16 +21,16 @@ function SearchRecipes() {
   const [maxRangerValue, setMaxRangerValue] = useState(1500);  
   const [finalMaxValue, setFinalMaxValue] = useState(1500);
   const [urlApi, setUrlApi] = useState(`https://api.spoonacular.com/recipes/complexSearch?&apiKey=2f0e9e3a78d041a393aa31a8ac79bdfc`); 
-  // const [recipes, setRecipes] = useState([]); 
+  const [recipes, setRecipes] = useState([]); 
 
-  // const callApi = (linkPage) => {
-  //   fetch(linkPage)
-  //     .then(res => res.json())
-  //     .then(res => {
-  //       setRecipes(res.results);
+  const callApi = (linkPage) => {
+    fetch(linkPage)
+      .then(res => res.json())
+      .then(res => {
+        setRecipes(res.results);
         
-  //     });
-  // }; 
+      });
+  }; 
 
   function filterDiet() {
     let dietParam = '';
@@ -60,29 +60,32 @@ function SearchRecipes() {
   useEffect(() => {
     filterDiet();
     filterIntolerances();  
-    // callApi(urlApi)
-  }, [isVegetarian, isKetogenic, isGlutenFree, isDairyFree, urlApi]);
+    console.log('Hola')
+  }, [isVegetarian, isKetogenic, isGlutenFree, isDairyFree]);
+
 
   useEffect(() => {
+    console.log('Adeu')
     setUrlApi(`https://api.spoonacular.com/recipes/complexSearch?number=10${diet}${intolerances}&minCalories=${finalMinValue}&maxCalories=${finalMaxValue}&includeIngredients=${selectIngredient}&apiKey=2f0e9e3a78d041a393aa31a8ac79bdfc`); 
-  }, [diet, intolerances, minRangerValue, finalMinValue, finalMaxValue])
+  }, [diet, intolerances, finalMinValue, finalMaxValue, selectIngredient, isVegetarian, isKetogenic, isGlutenFree, isDairyFree])
 
   useEffect(() => {
     console.log(urlApi)
+    // callApi(urlApi)
   }, [urlApi])
 
-  // const printRecipes = recipes.map((recipe, index) => {
-  //   return (
-  //       <div className="col-12 col-md-6 my-4">
-  //         <RecipesList 
-  //           key={index} 
-  //           recipiestitle={recipe.title} 
-  //           recipieimage={recipe.image} 
-  //           id={recipe.id}
-  //           />
-  //       </div>
-  //   )
-  //  })
+  const printRecipes = recipes.map((recipe, index) => {
+    return (
+        <div className="col-12 col-md-6 my-4">
+          <RecipesList 
+            key={index} 
+            recipiestitle={recipe.title} 
+            recipieimage={recipe.image} 
+            id={recipe.id}
+            />
+        </div>
+    )
+   })
 
   const onInput = (e) => {
     setMinRangerValue(e.minValue)
@@ -138,7 +141,7 @@ function SearchRecipes() {
         </Accordion>
       </div>
       <div className="row">
-        <div className="col-12 col-md-6 my-4">
+        {/* <div className="col-12 col-md-6 my-4">
           <RecipesList 
             recipiestitle="Chicken with chillies" 
             recipieimage="./images/chilly.jpg" 
@@ -155,8 +158,8 @@ function SearchRecipes() {
             recipiestitle="Pasta with pesto" 
             recipieimage="./images/pasta.jpg" 
             /> 
-        </div>
-        {/* {printRecipes}  */}
+        </div> */}
+        {printRecipes} 
       </div>
       
     </div>
