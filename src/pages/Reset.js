@@ -38,7 +38,7 @@ function Reset() {
 
 
   return(
-    <div>
+    <div style={{ backgroundImage:`url(./images/fruit.jpg)` }} className="backgroundLoginSignup">
       {isLoading && <Loader />}
       <ResetComponent 
         validated={validated} 

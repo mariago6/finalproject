@@ -10,7 +10,7 @@ import Card from 'react-bootstrap/Card'
 function LoginComponent({validated, handleSubmit, handleChangeEmail, handleChangePassword, email, password}) {
   return(
     <section className='sectionLoginSignup'>
-        <Card className='loginSignupCard  mx-5 my-5'>
+        <Card className='loginSignupCard  mx-5 mt-5'>
           <Form noValidate validated={validated} onSubmit={handleSubmit} className="m-4">
             <h1 className='text-center mb-4'>Log in</h1>
             <Row className="mb-3">

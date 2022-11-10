@@ -37,7 +37,7 @@ function Login() {
   };
 
   return(
-    <div style={{ backgroundImage:`url(./images/fruit.jpg)` }} className="backgroundLoginSignup">
+    <div style={{ backgroundImage:`url(./images/spaghetti.jpg)` }} className="backgroundLoginSignup">
       {isLoading && <Loader />}
       <LoginComponent 
         validated={validated} 

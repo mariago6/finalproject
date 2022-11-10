@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 
 function CheckboxFilter({id, label, onChange}) {
   return(
-    <Card.Text>
+    <Card.Text className="col-3">
       <Form.Check 
         type='checkbox'
         id={id}

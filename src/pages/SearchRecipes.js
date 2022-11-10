@@ -5,6 +5,8 @@ import CheckboxFilter from "../components/searchrecipes/CheckboxFilter";
 import SelectFilter from "../components/searchrecipes/SelectFilter";
 import RangerFilter from "../components/searchrecipes/RangeFilter";
 import Accordion from 'react-bootstrap/Accordion';
+import Button from 'react-bootstrap/Button';
+
 
 function SearchRecipes() {
   const [isVegetarian, setIsVegetarian] = useState(false);
@@ -15,7 +17,9 @@ function SearchRecipes() {
   const [intolerances, setIntolerances] = useState('');
   const [selectIngredient, setSelectIngredient] = useState(''); 
   const [minRangerValue, setMinRangerValue] = useState(50);
+  const [finalMinValue, setFinalMinValue] = useState(50);
   const [maxRangerValue, setMaxRangerValue] = useState(1500);  
+  const [finalMaxValue, setFinalMaxValue] = useState(1500);
   const [urlApi, setUrlApi] = useState(`https://api.spoonacular.com/recipes/complexSearch?&apiKey=2f0e9e3a78d041a393aa31a8ac79bdfc`); 
   // const [recipes, setRecipes] = useState([]); 
 
@@ -60,8 +64,8 @@ function SearchRecipes() {
   }, [isVegetarian, isKetogenic, isGlutenFree, isDairyFree, urlApi]);
 
   useEffect(() => {
-    setUrlApi(`https://api.spoonacular.com/recipes/complexSearch?number=10${diet}${intolerances}&minCalories=${minRangerValue}&maxCalories=${maxRangerValue}&includeIngredients=${selectIngredient}&apiKey=2f0e9e3a78d041a393aa31a8ac79bdfc`); 
-  }, [diet, intolerances, minRangerValue, maxRangerValue, selectIngredient])
+    setUrlApi(`https://api.spoonacular.com/recipes/complexSearch?number=10${diet}${intolerances}&minCalories=${finalMinValue}&maxCalories=${finalMaxValue}&includeIngredients=${selectIngredient}&apiKey=2f0e9e3a78d041a393aa31a8ac79bdfc`); 
+  }, [diet, intolerances, minRangerValue, finalMinValue, finalMaxValue])
 
   useEffect(() => {
     console.log(urlApi)
@@ -85,35 +89,52 @@ function SearchRecipes() {
     setMaxRangerValue(e.maxValue)
   }
 
+  const handleClick = () => {
+    setFinalMinValue(minRangerValue);
+    setFinalMaxValue(maxRangerValue); 
+  }
+
   return(
     <div className="container">
       <div className="recipesTitle">
         <h2>Recipies & Cooking Ideas</h2>
       </div>
       <div className="row">
-      <Accordion>
-      <Accordion.Item eventKey="0">
-      <Accordion.Header>Filters</Accordion.Header>
-      <Accordion.Body>
-          <CheckboxFilter id='vegetrian' label='Vegetarian' onChange={(e) => setIsVegetarian(e.target.checked)}/>
-          <CheckboxFilter id='ketogenic' label='Ketogenic' onChange={(e) => setIsKetogenic(e.target.checked)}/>
-          <CheckboxFilter id='glutenfree' label='Gluten free' onChange={(e) => setIsGlutenFree(e.target.checked)}/>
-          <CheckboxFilter id='dairyfree' label='Dairy free' onChange={(e) => setIsDairyFree(e.target.checked)}/>
-          <SelectFilter onChange={(e) => setSelectIngredient(e.target.value)}/>
-          <div className="rangerfilter">
-            <RangerFilter 
-              value1={minRangerValue} 
-              value2={maxRangerValue} 
-              onInput={onInput}
-            />
-            <div className="d-flex">
-              <p className="mx-2"><small>Minimum: <strong>{minRangerValue}KCal </strong></small></p>
-              <p className="mx-2"><small>Maximum: <strong>{maxRangerValue}KCal</strong></small></p>
-            </div>
-          </div>
-        
-        </Accordion.Body>
-        </Accordion.Item>
+        <Accordion>
+          <Accordion.Item eventKey="0">
+            <Accordion.Header>Filters</Accordion.Header>
+            <Accordion.Body className="containerAccordion">
+              <div className="row">
+                <CheckboxFilter id='vegetrian' label='Vegetarian' onChange={(e) => setIsVegetarian(e.target.checked)}/>
+                <CheckboxFilter id='ketogenic' label='Ketogenic' onChange={(e) => setIsKetogenic(e.target.checked)}/>
+                <CheckboxFilter id='glutenfree' label='Gluten free' onChange={(e) => setIsGlutenFree(e.target.checked)}/>
+                <CheckboxFilter id='dairyfree' label='Dairy free' onChange={(e) => setIsDairyFree(e.target.checked)}/>
+              </div>
+              <div className="row">
+                <div className="selectFilter">
+                  <SelectFilter onChange={(e) => setSelectIngredient(e.target.value)}/>
+                </div>
+              </div>
+              <div className="row">
+                <div className="rangerfilter">
+                  <div className="barRanger">
+                    <RangerFilter 
+                      value1={minRangerValue} 
+                      value2={maxRangerValue} 
+                      onInput={onInput}
+                    />
+                  </div>
+                  <div className="writeRanger">
+                    <p className="mx-2"><small>Minimum: <strong>{minRangerValue}KCal </strong></small></p>
+                    <p className="mx-2"><small>Maximum: <strong>{maxRangerValue}KCal</strong></small></p>
+                  </div>
+                  <div className="rangerButton">
+                    <Button type="button" onClick={handleClick} variant="outline-primary">Filter KCal</Button>
+                    </div>
+                </div>
+              </div>
+            </Accordion.Body>
+          </Accordion.Item>
         </Accordion>
       </div>
       <div className="row">

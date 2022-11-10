@@ -7,8 +7,8 @@ import Card from 'react-bootstrap/Card';
 
 function ResetComponent({validated, handleSubmit, handleChangeEmail, email}) {
   return(
-    <section>
-        <Card className='d-flex align-items-center mx-5 mt-4'>
+    <section className='sectionLoginSignup'>
+        <Card className='loginSignupCard  mx-5'>
           <Form noValidate validated={validated} onSubmit={handleSubmit} className="m-4">
             <h1 className='text-center mb-4'>Reset Password</h1>
             <Row className="mb-3">

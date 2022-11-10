@@ -73,7 +73,7 @@ function Signup() {
   }, [dispatch, username])
 
   return(
-    <div style={{ backgroundImage:`url(./images/fruit.jpg)` }} className="backgroundLoginSignup">
+    <div style={{ backgroundImage:`url(./images/tomatos.jpg)` }} className="backgroundLoginSignup">
       {isLoading && <Loader />}
       <SignUpComponent 
         validated={validated} 

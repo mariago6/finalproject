@@ -5,6 +5,7 @@ $primary: #98A8F8;
 
 *{
   font-family: "Frank Ruhl Libre", Georgia, serif;
+
 }
 
 .carousel-item {
@@ -19,6 +20,11 @@ $primary: #98A8F8;
 
 .navbar {
   font-size: 23px;
+  width: 100vw;
+}
+
+.footer {
+  width: 100vw;
 }
 
 .logoImage {
@@ -52,13 +58,17 @@ $primary: #98A8F8;
 }
 .sectionLoginSignup {
   display: flex;
-  justify-content:end;    
+  justify-content: end; 
+  align-items: center;   
+  min-height: 100vh;
+  
 }
 
 .loginSignupCard {
   width: 100%;
   max-width: 600px;
   background-color: transparent !important;
+  
 }
 
 .card-img-top {
@@ -73,7 +83,19 @@ $primary: #98A8F8;
 }
 
 .rangerfilter {
-  width: 30%;
+  width: 50%;
+  display: flex;
+  flex-flow: column;
+  
+}
+
+.barRanger {
+  display: flex;
+  flex-flow: column;
+  //width: 50%;
+  justify-content: center;
+  margin-left: 200px; 
+  margin-right: 200px;
 }
 
 .logoContainer {
@@ -81,9 +103,7 @@ $primary: #98A8F8;
 }
 
 .logoPicture {
-  //object-fit: cover;
   display: block;
-  //top: 50%;
   width: 100%;
   max-width: 203px;
   height: 100%;
@@ -168,6 +188,38 @@ ul.nav.nav-tabs {
   background-repeat: no-repeat;
   width: 100vw;
   height: 100vh; 
+}
+
+.form-select {
+  width: 60% !important;
+  margin-bottom: 30px !important;
+  margin-top: 30px !important;
+}
+
+.rangerButton {
+  display: flex;
+  justify-content: center;
+}
+.btn-outline-primary {
+  padding-right: 5px !important; 
+  padding-left: 5px !important; 
+  padding-top: 2px !important; 
+  padding-bottom: 2px !important; 
+}
+
+.writeRanger {
+  display: flex; 
+  justify-content: center;
+}
+
+.containerAccordion {
+  display: flex;
+  flex-flow: column;
+}
+
+.selectFilter {
+  display: flex;
+  justify-content: center; 
 }
 
 

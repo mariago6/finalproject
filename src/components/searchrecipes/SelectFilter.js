@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 
 function SelectFilter({onChange}) {
   return(
-    <Form.Select aria-label="Default select example" className='mb-5' onChange={onChange}>
+    <Form.Select aria-label="Default select example" onChange={onChange}>
       <option>Choose a ingredient</option>
       <option value="avocado">Avocado</option>
       <option value="bacon">Bacon</option>
