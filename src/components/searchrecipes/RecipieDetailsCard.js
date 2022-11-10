@@ -43,7 +43,6 @@ function RecipieDetailsCard({recipieimage, recipietitle, recipieingredients, rec
           </Card.Body>
         </Card>
       </div>
-
     </div>
   )
 }

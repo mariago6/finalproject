@@ -1,11 +1,8 @@
 
 $primary: #98A8F8; 
 
-// $font-family: "Frank Ruhl Libre", Georgia, serif;
-
-*{
+* {
   font-family: "Frank Ruhl Libre", Georgia, serif;
-
 }
 
 .carousel-item {
@@ -30,7 +27,6 @@ $primary: #98A8F8;
 .logoImage {
   object-fit: cover;
   display: block;
-  //top: 50%;
   width: 100%;
   max-width: 203px;
   height: 100%;
@@ -53,22 +49,22 @@ $primary: #98A8F8;
 .card {
   border: none !important;
 }
+
 .card-header {
   background-color: transparent !important;
 }
+
 .sectionLoginSignup {
   display: flex;
-  justify-content: end; 
+  justify-content: flex-end; 
   align-items: center;   
   min-height: 100vh;
-  
 }
 
 .loginSignupCard {
   width: 100%;
   max-width: 600px;
   background-color: transparent !important;
-  
 }
 
 .card-img-top {
@@ -86,13 +82,11 @@ $primary: #98A8F8;
   width: 50%;
   display: flex;
   flex-flow: column;
-  
 }
 
 .barRanger {
   display: flex;
   flex-flow: column;
-  //width: 50%;
   justify-content: center;
   margin-left: 200px; 
   margin-right: 200px;

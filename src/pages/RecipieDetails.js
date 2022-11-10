@@ -9,7 +9,7 @@ import INFORMATION from "./INFORMATION";
 
 function RecipieDetails() {
   const params = useParams(); 
-  const INITIAL_API = `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=2f0e9e3a78d041a393aa31a8ac79bdfc`
+  // const INITIAL_API = `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=2f0e9e3a78d041a393aa31a8ac79bdfc`; 
 
   const [steps, setSteps] = useState([]); 
   const [ingredients, setIngredients] = useState([]); 
@@ -19,19 +19,19 @@ function RecipieDetails() {
   const [image, setImage] = useState(''); 
   const [price, setPrice] = useState(''); 
 
-  const callApi = (linkPage) => {
-    fetch(linkPage)
-      .then(res => res.json())
-      .then((res) => {
-        setSteps(res.analyzedInstructions);
-        setIngredients(res.extendedIngredients);
-        setTitle(res.title);
-        setTime(res.readyInMinutes); 
-        setServings(res.servings);
-        setImage(res.image)
-        setPrice((res.pricePerServing/10).toFixed(2))
-      });
-  }; 
+  // const callApi = (linkPage) => {
+  //   fetch(linkPage)
+  //     .then(res => res.json())
+  //     .then((res) => {
+  //       setSteps(res.analyzedInstructions);
+  //       setIngredients(res.extendedIngredients);
+  //       setTitle(res.title);
+  //       setTime(res.readyInMinutes); 
+  //       setServings(res.servings);
+  //       setImage(res.image)
+  //       setPrice((res.pricePerServing/10).toFixed(2))
+  //     });
+  // }; 
 
   const getInformation = (data) => {
     setSteps(data.analyzedInstructions);
@@ -72,7 +72,6 @@ function RecipieDetails() {
     )
    })
 
-  
   return(
     <div>
       <RecipieDetailsCard 

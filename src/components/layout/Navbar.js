@@ -30,7 +30,6 @@ const NavbarHeader = () => {
       toast.error(error.message)
     });
   }
-  //current login user
 
   useEffect(() => {
     setIsLoading(true); 

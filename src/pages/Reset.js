@@ -34,9 +34,6 @@ function Reset() {
       });
   };
 
-  
-
-
   return(
     <div style={{ backgroundImage:`url(./images/fruit.jpg)` }} className="backgroundLoginSignup">
       {isLoading && <Loader />}
