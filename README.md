@@ -1,8 +1,17 @@
-# Getting Started with Create React App
+# Migga app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[draw-logo](https://user-images.githubusercontent.com/104831553/201068000-8d2f7fe6-c457-41d4-a016-33fc62f6b2d2.png)
 
-## Available Scripts
+You can acces my app at: 
+
+## Table of content: 
+
+<ul>
+  <li>About the App</li>
+  <li>Screenshots</li>
+  <li>Technologies</li>
+ </ul>
+
 
 In the project directory, you can run:
 
