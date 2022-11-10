@@ -15,7 +15,7 @@ You can acces my app at:
 
 In the project directory, you can run:
 
-###About the APP
+### About the APP
 
 Migga is a free and open-source recipe website. It contains more than 5,000 recipes and it allows us to understand the relationships between ingredients, recipes, nutrition, allergens, and more.
 you can filter to find recipes without gluten and dairy, also vegetarian or ketogenic recipes, you can choose some specific ingredient and you can limit the Kcal of the dish.
