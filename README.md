@@ -9,7 +9,6 @@ You can acces my app at:
 <ul>
   <li>About the App</li>
   <li>Screenshots</li>
-  <li>Technologies</li>
  </ul>
 
 
@@ -19,6 +18,37 @@ In the project directory, you can run:
 
 Migga is a free and open-source recipe website. It contains more than 5,000 recipes and it allows us to understand the relationships between ingredients, recipes, nutrition, allergens, and more.
 you can filter to find recipes without gluten and dairy, also vegetarian or ketogenic recipes, you can choose some specific ingredient and you can limit the Kcal of the dish.
+
+### Screenshots
+
+*HOME*
+
+![2022-11-11](https://user-images.githubusercontent.com/104831553/201308867-a20066b5-628c-4253-b59e-c09aea86f769.png)
+
+![2022-11-11 (1)](https://user-images.githubusercontent.com/104831553/201309032-ff836f09-1e5f-4181-83fd-0073c321e19a.png)
+
+
+
+*LOG IN*
+
+![2022-11-11 (2)](https://user-images.githubusercontent.com/104831553/201309174-f236ecf9-20de-4f21-bae6-99d08fa52293.png)
+
+
+
+*SEARCH RECIPES*
+
+![2022-11-11 (3)](https://user-images.githubusercontent.com/104831553/201309276-eb898b7c-ec6d-4ff0-b25e-72b21d770885.png)
+
+![2022-11-11 (4)](https://user-images.githubusercontent.com/104831553/201309292-230ebd52-45f9-49d3-913b-4827b193d0ae.png)
+
+
+
+*RECIPE DETAILS*
+
+![2022-11-11 (5)](https://user-images.githubusercontent.com/104831553/201309519-8a624cb4-4c63-4dbb-9446-acb22e2ff861.png)
+
+![2022-11-11 (7)](https://user-images.githubusercontent.com/104831553/201309637-641b30aa-173f-489c-861c-7e970e5b1a27.png)
+
 
 
 ### `npm start`
