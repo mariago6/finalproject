@@ -29,7 +29,7 @@ function CarouselHome({index, handleSelect}) {
         <Carousel.Caption>
           <div className='containerCarousel py-3'>
             <h2>Are you vegetarian?</h2>
-            <p>A lot of recipies without meat!</p>
+            <p>A lot of recipes without meat!</p>
           </div>
         </Carousel.Caption>
       </Carousel.Item>

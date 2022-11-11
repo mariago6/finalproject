@@ -4,7 +4,7 @@ import SearchRecipes from '../pages/SearchRecipes';
 import Login from '../pages/Login';
 import Signup from '../pages/Signup';
 import NavbarHeader from '../components/layout/Navbar';
-import RecipieDetails from '../pages/RecipieDetails';
+import RecipeDetails from '../pages/RecipeDetails';
 import Reset from '../pages/Reset';
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -18,7 +18,7 @@ const AllRoutes = () => {
       <Routes>
         <Route exact path='/' element={<Home />} />
           <Route path='/searchrecipes' element={<SearchRecipes />} />
-          <Route path='/searchrecipes/:id' element={<RecipieDetails />} /> 
+          <Route path='/searchrecipes/:id' element={<RecipeDetails />} /> 
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/reset' element={<Reset />} />

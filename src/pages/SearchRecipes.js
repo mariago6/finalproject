@@ -60,18 +60,16 @@ function SearchRecipes() {
   useEffect(() => {
     filterDiet();
     filterIntolerances();  
-    console.log('Hola')
   }, [isVegetarian, isKetogenic, isGlutenFree, isDairyFree]);
 
 
   useEffect(() => {
-    console.log('Adeu')
     setUrlApi(`https://api.spoonacular.com/recipes/complexSearch?number=10${diet}${intolerances}&minCalories=${finalMinValue}&maxCalories=${finalMaxValue}&includeIngredients=${selectIngredient}&apiKey=2f0e9e3a78d041a393aa31a8ac79bdfc`); 
   }, [diet, intolerances, finalMinValue, finalMaxValue, selectIngredient, isVegetarian, isKetogenic, isGlutenFree, isDairyFree])
 
   useEffect(() => {
-    console.log(urlApi)
-    // callApi(urlApi)
+    // console.log(urlApi)
+    callApi(urlApi)
   }, [urlApi])
 
   const printRecipes = recipes.map((recipe, index) => {
@@ -79,8 +77,8 @@ function SearchRecipes() {
         <div className="col-12 col-md-6 my-4">
           <RecipesList 
             key={index} 
-            recipiestitle={recipe.title} 
-            recipieimage={recipe.image} 
+            recipestitle={recipe.title} 
+            recipeimage={recipe.image} 
             id={recipe.id}
             />
         </div>
@@ -100,7 +98,7 @@ function SearchRecipes() {
   return(
     <div className="container">
       <div className="recipesTitle">
-        <h2>Recipies & Cooking Ideas</h2>
+        <h2>Recipes & Cooking Ideas</h2>
       </div>
       <div className="row">
         <Accordion>
@@ -141,22 +139,25 @@ function SearchRecipes() {
         </Accordion>
       </div>
       <div className="row">
+        {/* The api that we are using is free, but has limited calls. Therefore, I leave here a commented code to test the web in case the calls are finished. 
+        Also there are commented code in RecipeDetails.js too and the INFORMATION.js field is an example of recipe that is taken in RecipeDetails.js field*/}
+
         {/* <div className="col-12 col-md-6 my-4">
           <RecipesList 
-            recipiestitle="Chicken with chillies" 
-            recipieimage="./images/chilly.jpg" 
+            recipestitle="Chicken with chillies" 
+            recipeimage="./images/chilly.jpg" 
             linkroute="1" />
         </div>
         <div className="col-12 col-md-6 my-4">
           <RecipesList 
-            recipiestitle="Pasta with pesto" 
-            recipieimage="./images/pasta.jpg" 
+            recipestitle="Pasta with pesto" 
+            recipeimage="./images/pasta.jpg" 
             /> 
         </div>
         <div className="col-12 col-md-6 my-4">
           <RecipesList 
-            recipiestitle="Pasta with pesto" 
-            recipieimage="./images/pasta.jpg" 
+            recipestitle="Pasta with pesto" 
+            recipeimage="./images/pasta.jpg" 
             /> 
         </div> */}
         {printRecipes} 

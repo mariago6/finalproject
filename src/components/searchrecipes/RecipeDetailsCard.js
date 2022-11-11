@@ -9,15 +9,15 @@ import { BsFillClockFill, BsPeopleFill, BsFillPersonFill } from "react-icons/bs"
 import { GiFruitBowl } from "react-icons/gi";
 import {MdEuroSymbol} from 'react-icons/md'
 
-function RecipieDetailsCard({recipieimage, recipietitle, recipieingredients, recipieprocess, time, servings, numIngredients, price}) {
+function RecipeDetailsCard({recipeimage, recipetitle, recipeingredients, recipeprocess, time, servings, numIngredients, price}) {
   return(
     <div className="container">
       <div className="col-12">
       <Link to="/searchrecipes"><CloseButton /></Link>
         <Card className="detailsCard">
-          <Card.Img variant="top" src={recipieimage} className='detailsImgCard' />
+          <Card.Img variant="top" src={recipeimage} className='detailsImgCard' />
           <Card.Body className="detailsCardTitle">
-            <Card.Title >{recipietitle}</Card.Title>
+            <Card.Title >{recipetitle}</Card.Title>
           </Card.Body>
           <ListGroup horizontal className="detailsCardListGroup">
             <ListGroup.Item><BsFillClockFill /> {time}'</ListGroup.Item>
@@ -30,12 +30,12 @@ function RecipieDetailsCard({recipieimage, recipietitle, recipieingredients, rec
               <Tabs defaultActiveKey="ingredients" id="uncontrolled-tab-example" className="mb-3">
                 <Tab eventKey="ingredients" title="Ingredients">
                   <div className="stepDiv">
-                     {recipieingredients}
+                     {recipeingredients}
                   </div>
                 </Tab>
                 <Tab eventKey="instructions" title="Instructions">
                   <div className="stepDiv">
-                    {recipieprocess}
+                    {recipeprocess}
                   </div> 
                 </Tab>
               </Tabs>              
@@ -47,4 +47,4 @@ function RecipieDetailsCard({recipieimage, recipietitle, recipieingredients, rec
   )
 }
 
-export default RecipieDetailsCard; 
+export default RecipeDetailsCard; 
