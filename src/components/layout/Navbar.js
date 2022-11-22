@@ -14,6 +14,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import { SET_ACTIVE_USER, REMOVE_ACTIVA_USER, selectUserName } from '../../redux/slice/authSlice';
 import {ShowOnLogin, ShowOnLogout} from '../auth/HiddenLink';
 import Loader from '../auth/Loader/Loader'; 
+import { Link } from "react-router-dom";
 
 
 const NavbarHeader = () => {
@@ -58,9 +59,9 @@ const NavbarHeader = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
+          <Link to="/" style={{ textDecoration: 'none' }}><Nav.Link href="/">Home</Nav.Link></Link>
             <ShowOnLogin>
-              <Nav.Link href="searchrecipes">Search</Nav.Link>
+            <Link to="/searchrecipes" style={{ textDecoration: 'none' }}><Nav.Link href="searchrecipes">Search</Nav.Link></Link>
             </ShowOnLogin>
           </Nav>
           <Nav>
